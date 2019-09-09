@@ -1,0 +1,135 @@
+
+
+.recording-form-container{
+  width: 260px;
+  height: 250px;
+  border: 1px solid black;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #3e3224;
+  padding-top: 20px;
+  margin:auto;
+  right: 136px;
+  z-index:20;
+}
+
+.recording-form{
+  width: 80%;
+  height: 80%;
+  /* border: 1px solid red; */
+  margin: auto;
+  align-items: center;
+  position: absolute;
+  display: flex;
+}
+
+.volume{
+  width: 100%;
+ /* border: 1px solid orange; */
+ margin: auto;
+ display: flex;
+ padding: 6px;
+
+}
+
+.controls{
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid blue; */
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#record{
+  width: 33%;
+  height: 20%;
+  background: rgb(167, 13, 13);
+  color: white;
+}
+#stop{
+    width: 33%;
+    height: 20%;
+    background:rgb(20, 21, 0);
+    color: white;
+
+}
+
+#save{
+width: 33%;
+height: 20%;
+color: white;
+background: green;
+}
+
+#song-title{
+height: 15%;;
+width: 100%;
+text-align: center;
+
+
+}
+
+#song-artist{
+  height: 15%;;
+  width: 100%;
+  text-align: center;
+ 
+  }
+
+  #song-title-header{
+    margin: 0;
+    color: white;
+    font-weight: 200;
+  }
+
+  #song-artist-header{
+    margin: 0;
+    font-weight: 200;
+    color:white;
+  }
+
+  #volume-slider{
+  padding: 0;
+  }
+
+  input[type="range"]{
+    position: relative;  
+    -webkit-appearance: slider-horizontal;
+    margin: auto;
+ }
+
+ #control-heading{
+    margin: 0;
+    color: white;
+    font-weight: 200;
+    font-size: 20px;
+ }
+
+ .fas {
+   color: white;
+ }
+
+ .fa-trash{
+ font-size: 15px;
+ cursor: pointer;
+ }
+
+ .close-button{
+  text-align: right;
+  color: white;
+  cursor: pointer;
+  margin: auto;
+  right: 0;
+  position: absolute;
+  cursor:pointer;
+ }
+
+ .hide{
+  display: none;
+}
+
+
+

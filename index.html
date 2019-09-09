@@ -9,53 +9,31 @@
     <link href="./strings.css" rel="stylesheet">
     <link href="./styles.css" rel="stylesheet">
     <link href="./tools.css" rel="stylesheet">
-    <div class="banner">
-        <h1>MandolinMaestro9000</h1>
+    <link href="./nav.css" rel="stylesheet">
+    <link href="./recordingform.css" rel="stylesheet">
+    <link href="./songlibrary.css" rel="stylesheet">
+
+    
+    <div id="nav-bar">
+        <div id="recording-form-container"></div>
+
+        
+        
+        <img class="fader" src="black.jpg" />
     </div>
-    <img class="fader" src="black.jpg" />
-    <div class="app">
-        <div class="all">
-            <div id='fretboard'></div>
-            <div id="tools-container">
-                <div class="lower-tools-container">
-                    <div id="tools">
-                        <div class="tab">
-                            <button onclick="selectTab(event, 'songs')" class="tablinks">Songs</button>
-                            <button onclick="selectTab(event, 'recorder')" class="tablinks">Recorder</button>
-                            <button onclick="selectTab(event, 'settings')" class="tablinks">Settings</button>
-                            <button onclick="selectTab(event, 'about')" class="tablinks">About</button>
-                        </div>
-                        <div id="songs" class="tabcontent">
-                            <select id="song-lister" name="song-list" size="3" class="song-list">
-                                <option value="0">The Couch Within by Steven Blippy</option>
-                                <option value="0">Song 2</option>
-                                <option value="0">Reconstituted corn sweat in A minor</option>
-                            </select>
-                            <button id="song-play-button" class="play-song">Play Song</button>
-                        </div>
-                    </div>
-
-                    <div id="recorder" class="tabcontent">
-                        <p>press the record button to start recording your masterpiece now!</p>
-                        <button id="recordButton"></button>
-                    </div>
-
-                    <div id="settings" class="tabcontent">
-                        <p>Forest | WaterFall | rooftop |</p>
-                        <p><input type="range" id="ambient-volume" /></p>
-
-                    </div>
-
-                    <div id="about" class="tabcontent">
-                        <p>The Mandolin Maestro 9000 was created by Arshia Khoshnood</p>
-                    </div>
-                </div>
+        <div class="app">
+            <div class="all">
+                <div id='fretboard'></div>
+                
+        
+        <button id="song-play-button" class="play-song"></button>
+                       
             </div>
 </head>
 
 <body>
+    <script src="./navbar.js"></script>
     <script src="./app.js"></script>
-
 </body>
 
 </html>

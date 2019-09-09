@@ -1,3 +1,18 @@
+//// KEY DOWN EVENTS
+// import goToRecording from './recording'
+
+
+// test()
+
+
+// function test() {
+//   debugger
+//   goToRecording()
+
+// }
+
+
+
 document.addEventListener("keydown", function (event) {
   var key = event.key.toUpperCase() || event.keyCode.toUpperCase();
   keyPressed(key);
@@ -28,8 +43,10 @@ function assignNameAndPlayNote(key) {
 }
 
 function determineRecordingStatus() {
-  if (recordButton.innerHTML === 'armed') {
-    recordButton.innerHTML = 'recording...'
+
+  let recordButton = document.getElementById('record')
+  if (recordButton.innerHTML === 'ARMED') {
+    recordButton.innerHTML = 'RECORDING...'
     beginRecording()
   }
 }
@@ -105,12 +122,12 @@ function keyPressed(key) {
 }
 
 
-/// RECORDER SETUP
+/// RECORDER SETUP TOOLS, AND PLAYBACK
 function beginRecording() {
   recording = setInterval(function () {
     let i = 0;
 
-    if (keyNote !== 'undefined' && i === 0) {
+    if (keyNote !== 'undefined') {
 
       console.log(sounds[keyNote])
       let audio = new Audio(sounds[keyNote].src)
@@ -120,12 +137,12 @@ function beginRecording() {
       }
       recordedNotes.push(recordedNote)
       keyNote = 'undefined' /// !!!!!!!!!! may be the problem causing the 'src' error
-      i = 100
+
     } else {
       recordedNotes.push(0)
     }
 
-    if (recordedNotes.length > 40 && recordButton.innerHTML === 'record') {
+    if (recordedNotes.length > 40 && recordButton.innerHTML === 'REC') {
       clearInterval(recording)
       playBackRecording()
     }
@@ -135,9 +152,9 @@ function beginRecording() {
 function playBackRecording() {
 
   localStorage.setItem(`recording1`, JSON.stringify(recordedNotes))
-
   i = 0
-  setInterval(function () {
+
+  let playing = setInterval(function () {
     if (recordedNotes[i] !== 0) { // if the current note in recording array isnt empty
       assignNameAndPlayNote(recordedNotes[i].keyNote.slice(4))
       setTimeout(function () {
@@ -146,42 +163,62 @@ function playBackRecording() {
       }, 100)
     }
     i++
-
     if (i === recordedNotes.length) i = 0;
+    checkIfStopIsPressed(playing)
   }, 1)
+
 }
+function handleRecordButton() {
 
-function createRecorderButton() {
-  // recordButton = document.createElement("button")
-  recordButton = document.getElementById('recordButton')
-  recordButton.setAttribute("id", "recordButton")
-  recordButton.innerHTML = 'record'
+  recordButton = document.getElementById("record")
+  recordButton.addEventListener('click', function () {
 
-  // handle recordButton logic
-  handlerecordButton(recordButton)
-}
 
-function handlerecordButton(recordButton) {
-  document.getElementById("recordButton").addEventListener('click', function () {
-
-    if (recordButton.innerHTML === 'record') {
-      recordButton.innerHTML = 'armed'
+    if (recordButton.innerHTML === 'REC') {
+      recordButton.innerHTML = 'ARMED'
     } else {
-      recordButton.innerHTML = 'record'
+      recordButton.innerHTML = 'RECORDING...'
+    }
+
+    if (recordButton.innerHTML === 'RECORDING...') {
+      recordButton.innerHTML = 'REC'
     }
   })
+}
+
+
+function checkIfStopIsPressed(playing) {
+  let stopButton = document.getElementById('stop')
+  stopButton.addEventListener('click', function () {
+
+    if (stopButton.innerHTML === 'STOP') {
+      stopButton.innerHTML = 'PLAY'
+      stopRecordingPlayback(playing)
+    }
+      if (stopButton.innerHTML === 'PLAY'){
+        stopButton.innerHTML = 'STOP'
+        // playBackRecording()
+      }
+  })
+}
+
+function stopRecordingPlayback(playing) {
+  clearInterval(playing)
 }
 
 // note avant guard randomizer mode, hold one button to auto play notes
 // let audio = new Audio(sounds[Math.floor(Math.random() * 10 + 1)].src);
 
+
+
+//// STARTUP ////
 (async () => {
   sounds = await getSounds();
   console.log(sounds)
   renderMandolin();
-  createRecorderButton()
   populateRecordings()
 })();
+handleRecordButton()
 
 async function getSounds() {
   const response = await fetch("./soundwaves.json");
@@ -210,15 +247,6 @@ function renderMandolin() {
   loadSongList()
 }
 /////////////////////////////
-
-let songPlayButton = document.getElementById('song-play-button')
-songPlayButton.addEventListener('click', function () {
-  let songList = document.getElementById('song-lister')
-
-  recordedNotes = JSON.parse(localStorage.getItem('recording1'))
-  console.log(recordedNotes)
-  playBackRecording(recordedNotes)
-})
 
 
 function loadSongList() {
@@ -318,6 +346,10 @@ function addDetailsToElement(element) {
   addClassToElement(element);
 }
 
+
+
+
+
 ///// SETUP/SETTINGS
 ////////// KEY INPUTS
 
@@ -363,160 +395,11 @@ function ambience() {
 
 
 
+// let songPlayButton = document.getElementById('song-play-button')
+// songPlayButton.addEventListener('click', function () {
+//   let songList = document.getElementById('song-lister')
 
-
-
-
-
-
-
-// {
-//   "note1": {
-//     "note": "1note",
-//     "src": "sounds/mandolin_F5_very-long_piano_normal.mp3"
-//   },
-//   "note2": {
-//     "note": "2note",
-//     "src": "sounds/mandolin_Gs4_very-long_piano_normal.mp3"
-//   },
-//   "note3": {
-//     "note": "3note",
-//     "src": "sounds/mandolin_A5_very-long_piano_normal.mp3"
-//   },
-//   "note4": {
-//     "note": "4note",
-//     "src": "sounds/mandolin_B5_very-long_piano_normal.mp3"
-//   },
-//   "noteQ": {
-//     "note": "Qnote",
-//     "src": "sounds/mandolin_B4_very-long_piano_normal.mp3"
-//   },
-//   "noteW": {
-//     "note": "Wnote",
-//     "src": "sounds/mandolin_C5_very-long_piano_normal.mp3"
-//   },
-//   "noteE": {
-//     "note": "Enote",
-//     "src": "sounds/mandolin_D5_very-long_piano_normal.mp3"
-//   },
-//   "noteR": {
-//     "note": "Rnote",
-//     "src": "sounds/mandolin_E5_very-long_piano_normal.mp3"
-//   },
-//   "noteT": {
-//     "note": "Tnote",
-//     "src": "sounds/mandolin_F5_very-long_piano_normal.mp3"
-//   },
-//   "noteY": {
-//     "note": "Ynote",
-//     "src": "sounds/mandolin_Gs4_very-long_piano_normal.mp3"
-//   },
-//   "noteU": {
-//     "note": "Unote",
-//     "src": "sounds/mandolin_A5_very-long_piano_normal.mp3"
-//   },
-//   "noteI": {
-//     "note": "Inote",
-//     "src": "sounds/mandolin_B5_very-long_piano_normal.mp3"
-//   },
-//   "noteA": {
-//     "note": "Anote",
-//     "src": "sounds/mandolin_E4_very-long_piano_normal.mp3"
-//   },
-//   "noteS": {
-//     "note": "Snote",
-//     "src": "sounds/mandolin_F4_very-long_piano_normal.mp3"
-//   },
-//   "noteD": {
-//     "note": "Dnote",
-//     "src": "sounds/mandolin_Gs4real_very-long_piano_normal.mp3"
-//   },
-//   "noteF": {
-//     "note": "Fnote",
-//     "src": "sounds/mandolin_A4_very-long_piano_normal.mp3"
-//   },
-//   "noteZ": {
-//     "note": "Znote",
-//     "src": "sounds/Znote.mp3"
-//   },
-//   "noteX": {
-//     "note": "Xnote",
-//     "src": "sounds/Xnote.mp3"
-//   },
-//   "noteC": {
-//     "note": "Cnote",
-//     "src": "sounds/mandolin_C4_very-long_piano_normal.mp3"
-//   },
-//   "noteV": {
-//     "note": "Vnote",
-//     "src": "sounds/mandolin_D4_very-long_piano_normal.mp3"
-//   },
-//   "noteSHIFT": {
-//     "note": "SHIFTnote",
-//     "src": "sounds/mandolin_Gs3_very-long_piano_normal.mp3"
-//   },
-//   "noteB": {
-//     "note": "Bnote",
-//     "src": "sounds/mandolin_E4_very-long_piano_normal.mp3"
-//   },
-//   "noteN": {
-//     "note": "Nnote",
-//     "src": "sounds/mandolin_F4_very-long_piano_normal.mp3"
-//   },
-//   "noteM": {
-//     "note": "Mnote",
-//     "src": "sounds/mandolin_Gs4real_very-long_piano_normal.mp3"
-//   },
-//   "note,": {
-//     "note": ",note",
-//     "src": "sounds/mandolin_A4_very-long_piano_normal.mp3"
-//   },
-//   "note.": {
-//     "note": ".note",
-//     "src": "sounds/mandolin_B4_very-long_piano_normal.mp3"
-//   },
-//   "note/": {
-//     "note": "/note",
-//     "src": "sounds/mandolin_C5_very-long_piano_normal.mp3"
-//   },
-//   "noteG": {
-//     "note": "Gnote",
-//     "src": "sounds/mandolin_B4_very-long_piano_normal.mp3"
-//   },
-//   "noteH": {
-//     "note": "Hnote",
-//     "src": "sounds/mandolin_C5_very-long_piano_normal.mp3"
-//   },
-//   "noteJ": {
-//     "note": "Jnote",
-//     "src": "sounds/mandolin_D5_very-long_piano_normal.mp3"
-//   },
-//   "noteK": {
-//     "note": "Knote",
-//     "src": "sounds/mandolin_E5_very-long_piano_normal.mp3"
-//   },
-//   "noteL": {
-//     "note": "Lnote",
-//     "src": "sounds/mandolin_F5_very-long_piano_normal.mp3"
-//   },
-//   "note;": {
-//     "note": ";note",
-//     "src": "sounds/mandolin_Gs4_very-long_piano_normal.mp3"
-//   },
-//   "note'": {
-//     "note": "'note",
-//     "src": "sounds/mandolin_A5_very-long_piano_normal.mp3"
-//   },
-//   "noteENTER": {
-//     "note": "ENTERnote",
-//     "src": "sounds/mandolin_B5_very-long_piano_normal.mp3"
-//   },
-//   "note ": {
-//     "note": " note",
-//     "src": "sounds/spaceNote.mp3"
-//   },
-//   "noteCONTROL": {
-//     "note": "CONTROLnote",
-//     "src": "sounds/lownote.mp3"
-//   }
-// }
+//   recordedNotes = JSON.parse(localStorage.getItem('recording1'))
+//   console.log(recordedNotes)
+//   playBackRecording(recordedNotes)
+// })

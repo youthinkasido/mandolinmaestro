@@ -7,13 +7,17 @@
   top: -100px;
 }
 
+button{
+ outline: none;
+}
+
 .all {
-font-family: sans-serif;
+    font-family: sans-serif;
     width: 700px;
     border: 1px solid orange;
     position: relative;
     top: 300px;
-         margin: auto;
+    margin: auto;
 }
 
 .note-mode {
@@ -163,3 +167,7 @@ border-radius: 900px;
 .chord:hover {
   border: 1px solid red;
 }
+
+
+
+
