@@ -1,0 +1,165 @@
+.background{
+  position: absolute;
+  margin: auto;
+  z-index: -1;
+  width: 100%;
+  height: 140%;
+  top: -100px;
+}
+
+.all {
+font-family: sans-serif;
+    width: 700px;
+    border: 1px solid orange;
+    position: relative;
+    top: 300px;
+         margin: auto;
+}
+
+.note-mode {
+  color: white;
+}
+
+.note-mode-title {
+  color: beige;
+}
+
+body {
+  background: black;
+  background-image: url('./background.jpeg');
+  background-size: cover;
+  height: 600px;
+}
+
+.fretboard {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/mandolin-a1ce1.appspot.com/o/mandolinwood.png?alt=media&token=0f2e1fbf-e7e6-4ed4-bedf-70c8f83e7ca5");
+     width: 150%;
+    margin: auto;
+    height: 260px;
+    flex-direction: column;
+    border: 4px solid rgb(48, 48, 35);
+    border-radius: 2px;
+    border-left: 20px solid rgb(114, 78, 12);
+    margin-left: 0px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    top: 20px;
+    box-shadow: cadetblue;
+    box-shadow: 0px 0px 52px 3px black;
+    margin-left: -200px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-evenly;
+  margin: auto;
+  width: 100%;
+  height: 25%;
+}
+
+.fret {
+  flex-direction: row;
+  border-right: 5px solid rgb(71, 64, 22);
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  color: black;
+}
+
+
+
+.note { /* ACCIDENTALLU REVERSED NOTE PRESSED CLASSNAME!*/
+  width: 20px;
+  padding: 10px;
+  width: 20px;
+  padding: 10px;
+  border-radius: 20px;
+  background: white;
+  -webkit-box-shadow: inset 60 1px 3px rgba(0, 0, 0, 0.05),
+    0 1px 0 rgba(255, 255, 255, 0.075);
+  box-shadow: inset 0 1px 3px rgba(50, 0, 0, 0.05),
+    0 1px 0 rgba(255, 255, 255, 0.075);
+
+}
+
+
+
+
+.note:hover {
+  width: 20px;
+  padding: 10px;
+  border-radius: 20px;
+  background: rgb(129, 139, 129);
+  -webkit-box-shadow: inset 60 1px 3px rgba(0, 0, 0, 0.05),
+    0 1px 0 rgba(255, 255, 255, 0.075);
+  box-shadow: inset 0 1px 3px #3200000d,
+    0 1px 0 rgba(255, 255, 255, 0.075);
+        -webkit-box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
+-moz-box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
+box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
+}
+
+@-webkit-keyframes notepress{
+0% {
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(100, 255, 190, .75);
+}
+20%{
+    -webkit-box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
+
+}
+}
+
+.note-pressed {
+border-radius: 900px;
+    background-color: white;
+    box-shadow: 3px 2px;
+    z-index: 9;
+    text-align: center;
+    border: 8px solid white;
+    -webkit-animation-name: notepress;
+    -webkit-animation-duration: 2s;
+    animation-name: notepress;
+    animation-duration: 0.5s;
+    font-size: 20px;
+    FONT-WEIGHT: 800;
+
+}
+
+
+
+
+/*Chords */
+
+.chord-container-label {
+  color: white;
+  margin: auto;
+  position: relative;
+  left: 160px;
+}
+
+.chord-container {
+  width: 50%;
+  height: 90px;
+  border: 1px solid white;
+  margin: auto;
+  display: flex;
+  align-items: flex-end;
+}
+.chord {
+  z-index: 20;
+  color: white;
+  width: 25%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  color: white;
+  weight: 900;
+}
+
+.chord:hover {
+  border: 1px solid red;
+}
