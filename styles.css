@@ -14,7 +14,7 @@ button{
 .all {
     font-family: sans-serif;
     width: 700px;
-    border: 1px solid orange;
+    /* border: 1px solid orange; */
     position: relative;
     top: 300px;
     margin: auto;

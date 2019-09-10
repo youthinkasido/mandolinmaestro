@@ -25,16 +25,23 @@ function assignNameAndPlayNote(key) {
   }
   keyNote = "note" + key;
   let audio = new Audio(sounds[keyNote].src);
-  audio.play();
 
+  assignVolume(audio)
+  audio.play();
 }
 function determineRecordingStatus() {
 
   let recordButton = document.getElementById('record')
   if (recordButton.innerHTML === 'ARMED') {
     recordButton.innerHTML = 'RECORDING...'
+    recordedNotes = [];
+    stopRecordingPlayback()
     beginRecording()
   }
+
+  // if record button pressed, clear out any currently playing intervals and recordedNotes
+
+
 }
 function vibrateString(key) { //vibrate string based on location of note
   let string
@@ -84,7 +91,7 @@ function keyPressed(key) {
   assignNameAndPlayNote(key)
   highlightNote(keyNote)
   determineRecordingStatus()
-  saveRecording()
+  // saveRecording()
 
   switch (key) {
     case "SHIFT": case "Z": case "X": case "C": case "V":
@@ -106,6 +113,7 @@ function keyPressed(key) {
 }
 /// RECORDER SETUP TOOLS, AND PLAYBACK
 function beginRecording() {
+
   recording = setInterval(function () {
     let i = 0;
 
@@ -130,26 +138,58 @@ function beginRecording() {
     }
   }, 1)
 }
-function playBackRecording(loadedSong) {
 
-  // localStorage.setItem(`recording1`, JSON.stringify(recordedNotes))
+
+let speed = [];
+function playBackRecording() {
+  // after recording, set the selected song in library to the one just recorded and set that to the recordedNotes array
   i = 0
+  speed.forEach(item => {
+    clearInterval(item)
+  })
 
-
-  let playing = setInterval(function () {
+  playing = setInterval(function () {
     if (recordedNotes[i] !== 0) { // if the current note in recording array isnt empty
-      assignNameAndPlayNote(recordedNotes[i].keyNote.slice(4))
-      setTimeout(function () {
-        console.log(recordedNotes[i].keyNote)
+      assignNameAndPlayNote(recordedNotes[i].keyNote.slice(4)) // we play it, slicing out unused rests at the end of the recording to make it loop better.
+      checkIfStopIsPressed(playing) // while we iterate through our notes, check to make sure stop isnt pressed
+      setTimeout(function () { // highlight each note that is played back the recording
         highlightNote(keyNote)
       }, 100)
     }
-    i++
-    if (i === recordedNotes.length) i = 0;
-    checkIfStopIsPressed(playing)
+    i++ // go to the next note
+    if (i >= recordedNotes.length) i = 0; // if we have reached the end of the recording, reset it.
   }, 1)
 
+  speed.push(playing) // add the current songs speed so we can clear it out later if we play a different song
+
+  checkIfStopIsPressed(playing) // checks to see if stopped is pressed, passes the current playing interval
 }
+
+
+function selectSongForPlayBack() { // when selecting a song from songList
+
+
+  let playSongButton = document.getElementById('play-song-button')
+  playSongButton.addEventListener('click', function () {
+    const selectedSong = document.getElementById('song-list')
+    const song = localStorage[selectedSong.value]
+    recordedNotes = JSON.parse(song)
+    playBackRecording()
+
+    // grab the value of the song from local storage based on the name which is the select tags value 
+    // checks to see if the play button is pressed in the song library toolbar, then plays the corresponding song.
+    // clearInterval(playing)
+    // overwrite the current recording playback with the song retrieved from above
+    // parse the string from localStorage into a JS object so it can be played 
+    // play the song
+  })
+}
+
+let songList = document.getElementById('song-list') /// detect if a change is made to the song list
+songList.addEventListener('click', function () {
+  selectSongForPlayBack()
+})
+
 function handleRecordButton() {
   recordButton = document.getElementById("record")
   recordButton.addEventListener('click', function () {
@@ -166,28 +206,26 @@ function handleRecordButton() {
     }
   })
 }
+function checkIfStopIsPressed() { // checks wether stop or playing is toggled when clicking during song playback
 
-function checkIfStopIsPressed(playing) {
-  let stopButton = document.getElementById('stop')
-  stopButton.addEventListener('click', function () {
+  let stopSongButton = document.getElementById('stop-song-button')
+  let songPlayButton = document.getElementById('play-song-button')
 
-    if (stopButton.innerHTML === 'STOP') {
-      stopButton.innerHTML = 'PLAY'
-      stopRecordingPlayback(playing)
-    }
-    if (stopButton.innerHTML === 'PLAY') {
-      stopButton.innerHTML = 'STOP'
-      // playBackRecording()
-    }
+  stopSongButton.addEventListener('click', function () {
+    stopRecordingPlayback() // clear the playback interval passed in from playBackRecording
   })
 }
-function stopRecordingPlayback(playing) {
-  clearInterval(playing)
+
+function stopRecordingPlayback() {
+
+  speed.forEach(item => {
+    clearInterval(item)
+  })
+
+  // clearInterval(playing)
+  recordedNotes = [];
+
 }
-
-
-
-
 function handleSaveButton() { // refactor the interface to include global recordedNotes variable
 
   let recordingInterface = {
@@ -197,15 +235,13 @@ function handleSaveButton() { // refactor the interface to include global record
   }
   const { saveButton, title, artist } = recordingInterface
 
-  const storedRecording = localStorage.setItem(`${title.value} by ${artist.value}`, recordedNotes)
-  debugger
+  const storedRecording = localStorage.setItem(`${title.value} by ${artist.value}`, JSON.stringify(recordedNotes))
+
   loadSongList()
   // localStorage.setItem(`${localStorage.length} . ${title.value} by ${artist.value}`, JSON.stringify(recordedNotes))
 }
-
 ///// save feature //
 let saveButton = document.getElementById('save')
-
 if (saveButton) {
   saveButton.addEventListener('click', function () {
     if (saveButton.innerHTML === 'SAVE') {
@@ -224,7 +260,6 @@ if (saveButton) {
   populateRecordings()
 })();
 handleRecordButton()
-
 async function getSounds() {
   const response = await fetch("./soundwaves.json");
   const sounds = await response.json();
@@ -234,14 +269,12 @@ function renderMandolin() {
   createFretboard();
   loadSongList()
 }
-
 /////////////////////////////
 function loadSongList() { // sort songs
 
   let storageSongs = {
     songs: Object.keys(localStorage).sort(function (a, b) { return a - b })
   }
-  debugger
 
   const songList = document.getElementById('song-list')
   const { songs } = storageSongs;
@@ -261,8 +294,6 @@ function loadSongList() { // sort songs
     songList.appendChild(listItem)
   }
 }
-
-
 function createFretboard() {
   while (rowCount < 4) {
     let row = addRowToFretboard();
@@ -363,29 +394,30 @@ i = 0
 ambience()
 
 function ambience() {
-  volume = document.querySelector('#ambient-volume')
-  progress = document.querySelector('#progress')
-  ambientElement = document.createElement('div')
+  volume = document.getElementById('volume-slider')
 
-  ambientElement.setAttribute('id', 'ambient-sound')
-  fretboard.appendChild(ambientElement)
 
   // ambientAudio = new Audio("https://firebasestorage.googleapis.com/v0/b/mandolin-a1ce1.appspot.com/o/waterfall.mp3?alt=media&token=a32a5fd4-8fae-4aa4-a211-a6e5cbd81e62")
   // ambientAudio.volume = 0.1;
   // ambientAudio.play()
 }
 
-// volume.addEventListener("mousemove", function (e) {
-//   ambientAudio.volume = e.currentTarget.value / 100
-// })
+
+function assignVolume(note) {
+
+  let volume = document.getElementById('volume-slider')
+  volume.addEventListener("mousemove", function (e) {
+
+    note.volume = e.currentTarget.value / 100
+  })
+}
 
 
 
-// let songPlayButton = document.getElementById('song-play-button')
-// songPlayButton.addEventListener('click', function () {
-//   let songList = document.getElementById('song-lister')
 
 //   recordedNotes = JSON.parse(localStorage.getItem('recording1'))
 //   console.log(recordedNotes)
 //   playBackRecording(recordedNotes)
 // })
+
+

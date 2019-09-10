@@ -73,9 +73,10 @@ function linkToggle() {
     let songsTab = document.getElementById('songs-tab')
 
 
-    if (recordTab) {
+    if (recordTab) { //if the recording tab is loaded and we click it.
         recordTab.addEventListener('click', function () {
             recordingFormContainer.classList.toggle('hide')
+            set
         })
     }
 
