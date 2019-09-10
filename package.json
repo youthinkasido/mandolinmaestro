@@ -2,21 +2,31 @@
   "name": "mandolin",
   "version": "1.0.0",
   "description": "add a recording as a db item",
-  "main": "BACKUPJS.js",
+  "main": "index.js",
   "dependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
     "babel": "^6.23.0",
+    "babel-loader": "^8.0.6",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "firebase": "^6.5.0",
+    "lodash": "^4.17.15",
     "mongoose": "^5.6.11",
     "require": "^2.4.20",
-    "require.js": "^1.0.0",
-    "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7"
+    "require.js": "^1.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "start:dev": "webpack-dev-server"
   },
   "keywords": [],
   "author": "",
