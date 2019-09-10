@@ -1,17 +1,5 @@
 //// KEY DOWN EVENTS
-// import goToRecording from './recording'
-
-
-// test()
-
-
-// function test() {
-//   debugger
-//   goToRecording()
-
-// }
-
-
+// import { createFretboard } from './fretboard.js'
 
 document.addEventListener("keydown", function (event) {
   var key = event.key.toUpperCase() || event.keyCode.toUpperCase();
@@ -29,7 +17,6 @@ function highlightNote(note) { // highlight, then de-highlight pressed note
 
   // highlightNonfrettedNotes(note)
 }
-
 function assignNameAndPlayNote(key) {
 
   if (key === 'SHIFT') {
@@ -41,7 +28,6 @@ function assignNameAndPlayNote(key) {
   audio.play();
 
 }
-
 function determineRecordingStatus() {
 
   let recordButton = document.getElementById('record')
@@ -50,8 +36,6 @@ function determineRecordingStatus() {
     beginRecording()
   }
 }
-
-
 function vibrateString(key) { //vibrate string based on location of note
   let string
   switch (key) {
@@ -95,12 +79,12 @@ function vibrateString(key) { //vibrate string based on location of note
       break
   }
 }
-
 function keyPressed(key) {
 
   assignNameAndPlayNote(key)
   highlightNote(keyNote)
   determineRecordingStatus()
+  saveRecording()
 
   switch (key) {
     case "SHIFT": case "Z": case "X": case "C": case "V":
@@ -120,8 +104,6 @@ function keyPressed(key) {
       break;
   }
 }
-
-
 /// RECORDER SETUP TOOLS, AND PLAYBACK
 function beginRecording() {
   recording = setInterval(function () {
@@ -148,7 +130,6 @@ function beginRecording() {
     }
   }, 1)
 }
-
 function playBackRecording() {
 
   localStorage.setItem(`recording1`, JSON.stringify(recordedNotes))
@@ -169,7 +150,6 @@ function playBackRecording() {
 
 }
 function handleRecordButton() {
-
   recordButton = document.getElementById("record")
   recordButton.addEventListener('click', function () {
 
@@ -186,7 +166,6 @@ function handleRecordButton() {
   })
 }
 
-
 function checkIfStopIsPressed(playing) {
   let stopButton = document.getElementById('stop')
   stopButton.addEventListener('click', function () {
@@ -195,21 +174,42 @@ function checkIfStopIsPressed(playing) {
       stopButton.innerHTML = 'PLAY'
       stopRecordingPlayback(playing)
     }
-      if (stopButton.innerHTML === 'PLAY'){
-        stopButton.innerHTML = 'STOP'
-        // playBackRecording()
-      }
+    if (stopButton.innerHTML === 'PLAY') {
+      stopButton.innerHTML = 'STOP'
+      // playBackRecording()
+    }
   })
 }
-
 function stopRecordingPlayback(playing) {
   clearInterval(playing)
 }
 
+
+
+
+
+function handleSaveButton() {
+  let saveButton = document.getElementById('save')
+  let title = document.getElementById('song-title')
+  let artist = document.getElementById('artist')
+  saveButton.addEventListener('click', function () {
+    if (saveButton.innerHTML === 'SAVE') {
+      let recording = {
+        recordedNotes: recordedNotes,
+        title: title,
+        artist: artist
+      }
+      alert('file saved')
+      localStorage.setItem('recording11', JSON.stringify(recording))
+      debugger
+    }
+
+
+  })
+
+}
 // note avant guard randomizer mode, hold one button to auto play notes
 // let audio = new Audio(sounds[Math.floor(Math.random() * 10 + 1)].src);
-
-
 
 //// STARTUP ////
 (async () => {
@@ -219,36 +219,21 @@ function stopRecordingPlayback(playing) {
   populateRecordings()
 })();
 handleRecordButton()
-
+handleSaveButton()
 async function getSounds() {
   const response = await fetch("./soundwaves.json");
   const sounds = await response.json();
   return sounds;
 }
-
-function selectTab(event, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName('tabcontent')
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  tablinks = document.getElementsByClassName("tablinks")
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  document.getElementById(tabName).style.display = "block";
-  event.currentTarget.className += " active";
-}
-
 function renderMandolin() {
   createFretboard();
   loadSongList()
 }
+
+
+
+
 /////////////////////////////
-
-
 function loadSongList() {
   let songList = document.getElementById('song-lister')
   for (let s = 0; s < localStorage.length; s++) {
@@ -266,7 +251,6 @@ function createFretboard() {
     let fret = addFretToRow(row);
   }
 }
-
 function addStringsToFretboard(row) {
   let string = document.createElement("div");
   string.setAttribute("tag", "string");
@@ -274,7 +258,6 @@ function addStringsToFretboard(row) {
   row.appendChild(string);
   stringCount++;
 }
-
 function addRowToFretboard() {
   let row = document.createElement("div");
   row.setAttribute("tag", "row");
@@ -284,7 +267,6 @@ function addRowToFretboard() {
   rowCount++;
   return row;
 }
-
 function addFretToRow(row) {
 
   for (let i = 0; i < 8; i++) {
@@ -301,7 +283,6 @@ function addFretToRow(row) {
   }
   return finalFret; // same here
 }
-
 function addNoteToFret(fret) {
   let note = document.createElement("div");
 
@@ -313,7 +294,6 @@ function addNoteToFret(fret) {
   noteCount++;
   return finalNote;
 }
-
 function addClassToElement(element) {
   if (element.getAttribute("tag") === "row") element.classList = "row";
   if (element.getAttribute("tag") === "fret") element.classList = "fret";
@@ -324,7 +304,6 @@ function addClassToElement(element) {
   if (element.getAttribute("tag") === "string") element.classList = `string${stringCount + 1} plucked${stringCount + 1}`;
 
 }
-
 function addIdToElement(element) {
 
   if (element.getAttribute("tag") === "row") element.setAttribute("id", rowCount);
@@ -340,20 +319,12 @@ function addIdToElement(element) {
 
 
 }
-
 function addDetailsToElement(element) {
   addIdToElement(element);
   addClassToElement(element);
 }
-
-
-
-
-
 ///// SETUP/SETTINGS
 ////////// KEY INPUTS
-
-
 noteIndex = ["note1", "note2", "note3", "note4", "note5", "note6", "note7", "note8",
   "noteQ", "noteW", "noteE", "noteR", "noteT", "noteY", "noteU", "noteI",
   "noteA", "noteS", "noteD", "noteF", "noteG", "noteH", "noteJ", "noteK",
@@ -361,6 +332,9 @@ noteIndex = ["note1", "note2", "note3", "note4", "note5", "note6", "note7", "not
 
 const fretboard = document.querySelector("#fretboard");
 fretboard.classList += "fretboard";
+
+saveButton = document.getElementById('save')
+
 
 rowCount = 0;
 fretCount = 0;
@@ -371,7 +345,6 @@ noteTiming = 0;
 i = 0
 
 ambience()
-
 
 function ambience() {
   volume = document.querySelector('#ambient-volume')
@@ -389,9 +362,6 @@ function ambience() {
 // volume.addEventListener("mousemove", function (e) {
 //   ambientAudio.volume = e.currentTarget.value / 100
 // })
-
-
-
 
 
 

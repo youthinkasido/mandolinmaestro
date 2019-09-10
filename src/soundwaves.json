@@ -1,0 +1,169 @@
+{
+  "note5": {
+    "note": "1note",
+    "src": "sounds/mandolin_F5_very-long_piano_normal.mp3"
+  },
+  "note6": {
+    "note": "2note",
+    "src": "sounds/mandolin_Gs4_very-long_piano_normal.mp3"
+  },
+  "note7": {
+    "note": "3note",
+    "src": "sounds/mandolin_A5_very-long_piano_normal.mp3"
+  },
+  "note8": {
+    "note": "4note",
+    "src": "sounds/mandolin_B5_very-long_piano_normal.mp3"
+  },
+  "note1": {
+    "note": "1note",
+    "src": "sounds/mandolin_F5_very-long_piano_normal.mp3"
+  },
+  "note2": {
+    "note": "2note",
+    "src": "sounds/mandolin_Gs4_very-long_piano_normal.mp3"
+  },
+  "note3": {
+    "note": "3note",
+    "src": "sounds/mandolin_A5_very-long_piano_normal.mp3"
+  },
+  "note4": {
+    "note": "4note",
+    "src": "sounds/mandolin_B5_very-long_piano_normal.mp3"
+  },
+  "noteQ": {
+    "note": "Qnote",
+    "src": "sounds/mandolin_B4_very-long_piano_normal.mp3"
+  },
+  "noteW": {
+    "note": "Wnote",
+    "src": "sounds/mandolin_C5_very-long_piano_normal.mp3"
+  },
+  "noteE": {
+    "note": "Enote",
+    "src": "sounds/mandolin_D5_very-long_piano_normal.mp3"
+  },
+  "noteR": {
+    "note": "Rnote",
+    "src": "sounds/mandolin_E5_very-long_piano_normal.mp3"
+  },
+  "noteT": {
+    "note": "Tnote",
+    "src": "sounds/mandolin_F5_very-long_piano_normal.mp3"
+  },
+  "noteY": {
+    "note": "Ynote",
+    "src": "sounds/mandolin_Gs4_very-long_piano_normal.mp3"
+  },
+  "noteU": {
+    "note": "Unote",
+    "src": "sounds/mandolin_A5_very-long_piano_normal.mp3"
+  },
+  "noteI": {
+    "note": "Inote",
+    "src": "sounds/mandolin_B5_very-long_piano_normal.mp3"
+  },
+  "noteA": {
+    "note": "Anote",
+    "src": "sounds/mandolin_E4_very-long_piano_normal.mp3"
+  },
+  "noteS": {
+    "note": "Snote",
+    "src": "sounds/mandolin_F4_very-long_piano_normal.mp3"
+  },
+  "noteD": {
+    "note": "Dnote",
+    "src": "sounds/mandolin_Gs4real_very-long_piano_normal.mp3"
+  },
+  "noteF": {
+    "note": "Fnote",
+    "src": "sounds/mandolin_A4_very-long_piano_normal.mp3"
+  },
+  "noteZ": {
+    "note": "Znote",
+    "src": "sounds/Znote.mp3"
+  },
+  "noteX": {
+    "note": "Xnote",
+    "src": "sounds/Xnote.mp3"
+  },
+  "noteC": {
+    "note": "Cnote",
+    "src": "sounds/mandolin_C4_very-long_piano_normal.mp3"
+  },
+  "noteV": {
+    "note": "Vnote",
+    "src": "sounds/mandolin_D4_very-long_piano_normal.mp3"
+  },
+  "noteSHIFT": {
+    "note": "SHIFTnote",
+    "src": "sounds/mandolin_Gs3_very-long_piano_normal.mp3"
+  },
+  "noteB": {
+    "note": "Bnote",
+    "src": "sounds/mandolin_E4_very-long_piano_normal.mp3"
+  },
+  "noteN": {
+    "note": "Nnote",
+    "src": "sounds/mandolin_F4_very-long_piano_normal.mp3"
+  },
+  "noteM": {
+    "note": "Mnote",
+    "src": "sounds/mandolin_Gs4real_very-long_piano_normal.mp3"
+  },
+  "note,": {
+    "note": ",note",
+    "src": "sounds/mandolin_A4_very-long_piano_normal.mp3"
+  },
+  "note.": {
+    "note": ".note",
+    "src": "sounds/mandolin_B4_very-long_piano_normal.mp3"
+  },
+  "note/": {
+    "note": "/note",
+    "src": "sounds/mandolin_C5_very-long_piano_normal.mp3"
+  },
+  "noteG": {
+    "note": "Gnote",
+    "src": "sounds/mandolin_B4_very-long_piano_normal.mp3"
+  },
+  "noteH": {
+    "note": "Hnote",
+    "src": "sounds/mandolin_C5_very-long_piano_normal.mp3"
+  },
+  "noteJ": {
+    "note": "Jnote",
+    "src": "sounds/mandolin_D5_very-long_piano_normal.mp3"
+  },
+  "noteK": {
+    "note": "Knote",
+    "src": "sounds/mandolin_E5_very-long_piano_normal.mp3"
+  },
+  "noteL": {
+    "note": "Lnote",
+    "src": "sounds/mandolin_F5_very-long_piano_normal.mp3"
+  },
+  "note;": {
+    "note": ";note",
+    "src": "sounds/mandolin_Gs4_very-long_piano_normal.mp3"
+  },
+  "note'": {
+    "note": "'note",
+    "src": "sounds/mandolin_A5_very-long_piano_normal.mp3"
+  },
+  "noteENTER": {
+    "note": "ENTERnote",
+    "src": "sounds/mandolin_B5_very-long_piano_normal.mp3"
+  },
+  "note ": {
+    "note": " note",
+    "src": "sounds/spaceNote.mp3"
+  },
+
+  "noteCONTROL":{
+    "note": "CONTROLnote",
+    "src": "sounds/lownote.mp3"
+  }
+}
+
+
