@@ -48,15 +48,7 @@ function createNav() {
     <h3>Song Library</h3>
     <select id="song-list" size="10">
     <option>Invent in A minor by Tony Gunk</option>
-    <option>Invent in A minor by Tony Gunk</option>
-    <option>Invent in A minor by Tony Gunk</option>
-    <option>Invent in A minor by Tony Gunk</option>
-    <option>Invent in A minor by Tony Gunk</option>
-    <option>Invent in A minor by Tony Gunk</option>
-    <option>Invent in A minor by Tony Gunk</option>
-    <option>Invent in A minor by Tony Gunk</option>
-    <option>Invent in A minor by Tony Gunk</option>
-    <option>Invent in A minor by Tony Gunk</option>
+ 
     </select>
 
         <div class="song-play-bar">

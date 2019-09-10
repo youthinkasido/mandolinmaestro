@@ -130,10 +130,11 @@ function beginRecording() {
     }
   }, 1)
 }
-function playBackRecording() {
+function playBackRecording(loadedSong) {
 
-  localStorage.setItem(`recording1`, JSON.stringify(recordedNotes))
+  // localStorage.setItem(`recording1`, JSON.stringify(recordedNotes))
   i = 0
+
 
   let playing = setInterval(function () {
     if (recordedNotes[i] !== 0) { // if the current note in recording array isnt empty
@@ -187,26 +188,30 @@ function stopRecordingPlayback(playing) {
 
 
 
+function handleSaveButton() { // refactor the interface to include global recordedNotes variable
 
-function handleSaveButton() {
-  let saveButton = document.getElementById('save')
-  let title = document.getElementById('song-title')
-  let artist = document.getElementById('artist')
+  let recordingInterface = {
+    saveButton: document.getElementById('save'),
+    title: document.getElementById('song-title'),
+    artist: document.getElementById('song-artist')
+  }
+  const { saveButton, title, artist } = recordingInterface
+
+  const storedRecording = localStorage.setItem(`${title.value} by ${artist.value}`, recordedNotes)
+  debugger
+  loadSongList()
+  // localStorage.setItem(`${localStorage.length} . ${title.value} by ${artist.value}`, JSON.stringify(recordedNotes))
+}
+
+///// save feature //
+let saveButton = document.getElementById('save')
+
+if (saveButton) {
   saveButton.addEventListener('click', function () {
     if (saveButton.innerHTML === 'SAVE') {
-      let recording = {
-        recordedNotes: recordedNotes,
-        title: title,
-        artist: artist
-      }
-      alert('file saved')
-      localStorage.setItem('recording11', JSON.stringify(recording))
-      debugger
+      handleSaveButton()
     }
-
-
   })
-
 }
 // note avant guard randomizer mode, hold one button to auto play notes
 // let audio = new Audio(sounds[Math.floor(Math.random() * 10 + 1)].src);
@@ -219,7 +224,7 @@ function handleSaveButton() {
   populateRecordings()
 })();
 handleRecordButton()
-handleSaveButton()
+
 async function getSounds() {
   const response = await fetch("./soundwaves.json");
   const sounds = await response.json();
@@ -230,20 +235,34 @@ function renderMandolin() {
   loadSongList()
 }
 
-
-
-
 /////////////////////////////
-function loadSongList() {
-  let songList = document.getElementById('song-lister')
-  for (let s = 0; s < localStorage.length; s++) {
+function loadSongList() { // sort songs
 
-    let optionTag = document.createElement('option')
-    optionTag.innerHTML = localStorage.recording1
-    songList.appendChild(optionTag)
+  let storageSongs = {
+    songs: Object.keys(localStorage).sort(function (a, b) { return a - b })
+  }
+  debugger
+
+  const songList = document.getElementById('song-list')
+  const { songs } = storageSongs;
+
+  if (songList.length > 0) { // repopulate song list each time a new song is saved after recording
+    songList.remove(1)
   }
 
+  for (let s = 0; s < songs.length; s++) {
+
+    let song = songs[s]
+
+    let listItem = document.createElement('option')
+
+    listItem.innerHTML = song
+
+    songList.appendChild(listItem)
+  }
 }
+
+
 function createFretboard() {
   while (rowCount < 4) {
     let row = addRowToFretboard();
@@ -316,8 +335,6 @@ function addIdToElement(element) {
     element.setAttribute("id", noteIndex[i]);
     i++
   }
-
-
 }
 function addDetailsToElement(element) {
   addIdToElement(element);
@@ -334,7 +351,6 @@ const fretboard = document.querySelector("#fretboard");
 fretboard.classList += "fretboard";
 
 saveButton = document.getElementById('save')
-
 
 rowCount = 0;
 fretCount = 0;
