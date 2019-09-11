@@ -8,7 +8,7 @@ function createNav() {
     if (navBar) {
         document.getElementById('nav-bar').innerHTML = `
 
-    <div id="invisible-box">
+<div class="navbar-container">
     <nav id="nav-bar"class="navbar">
         <h1>Mandolin Maestro</h1>
         <ul id="nav-bar" class="navbar-items>
@@ -16,39 +16,64 @@ function createNav() {
         <li><a id="songs-tab" href="#">Songs</a></li>
         <li><a id="settings-tab" href="#">Settings</a></li>
         <li><a id="about-tab"href="#">About</a></li>
+
+           <li> <div class="volume">
+                <i class="fas fa-volume-down"></i>
+                <i class="fas fa-volume-mute"></i>
+                <input id="volume-slider" type="range"/>
+                </li>
+            </div>
         </ul>
         <hr/>
     </nav>
+</div>
+        <div id="warning-form-container" class="warning-form-container">
+        <div class="warning-form">
+        <div class="warning-form__header"></div>
+        <h3 class="warning-form__message">You have to name your song first!</h3>
+        <p class="warning-form__details"> Give your song a cactchy and memorable name.</p>
+        <button id="warning-form__button" class="warning-form__button">OK</button>
+        </div>
+        </div>
+     
 
 
     <div id="recording-form-container" class="recording-form-container hide">
         <div class="recording-form">
 
         <div class="controls">
-            <h5 id="control-heading">New Recording</h5>
-            <div class="close-button"><i class="fa fa-trash" aria-hidden="true"></i></div>
-            <input placeholder="song title" id="song-title" type="text"/>
+            <h5 id="recording-form-container-header">New Recording</h5>
+            <input autocomplete="off" placeholder="song title" id="song-title" type="text"/>
             <input placeholder="artist"id="song-artist" type="text"/>
 
+            <div class="recording-buttons">
             <button id="record" >REC</button>
             <button id="stop" >STOP</button>
             <button id="save">SAVE</button>
 
-            <div class="volume">
-                <i class="fas fa-volume-down"></i>
-                <input id="volume-slider" type="range"/>
             </div>
+            <span>Press a key to begin recording</span>
+
+       
         </div>
         </div>
     </div>
+    </div>
+
+    <div id="settings-form-container" class="settings-form-container">
+    <div id="settings-form" class="settings-form">
+    <h3 id="settings-form-container-header">Settings</h3>
+
+        </div>
+    </div>
+
 
     <div id="song-library-container" class="song-library-container hide">
-
     <div id="song-library" class="song-library">
-    <h3>Song Library</h3>
+    <h3 id="song-library-container-header">Song Library</h3>
+
     <select id="song-list" size="10">
     <option>Invent in A minor by Tony Gunk</option>
- 
     </select>
 
         <div class="song-play-bar">
@@ -60,10 +85,59 @@ function createNav() {
     </div>
     </div>
 
-    </div>
+   
     `
     }
 }
+
+
+dragElement(document.getElementById("song-library-container"));
+dragElement(document.getElementById("recording-form-container"));
+dragElement(document.getElementById("settings-form-container"));
+function dragElement(element) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(element.id + "-header")) {
+        /* if present, the header is where you move the DIV from:*/
+        document.getElementById(element.id + "-header").onmousedown = dragMouseDown;
+    } else {
+        /* otherwise, move the DIV from anywhere inside the DIV:*/
+        element.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+        element.style.zIndex = 40;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+
+    }
+
+    function closeDragElement() {
+        /* stop moving when mouse button is released:*/
+        document.onmouseup = null;
+        document.onmousemove = null;
+
+    }
+}
+
 
 function linkToggle() {
     let recordingFormContainer = document.getElementById('recording-form-container')
@@ -76,18 +150,28 @@ function linkToggle() {
     if (recordTab) { //if the recording tab is loaded and we click it.
         recordTab.addEventListener('click', function () {
             recordingFormContainer.classList.toggle('hide')
-
+            recordingFormContainer.style.zIndex = songLibraryContainer.style.zIndex + 1
         })
     }
 
     if (songsTab) {
         songsTab.addEventListener('click', function () {
             songLibraryContainer.classList.toggle('hide')
-
+            songLibraryContainer.style.zIndex = recordingFormContainer.style.zIndex + 1
         })
 
     }
 
+    let warningFormButton = document.getElementById('warning-form__button')
+
+
+    if (warningFormButton) {
+        warningFormButton.addEventListener('click', function () {
+
+            let warningFormContainer = document.getElementById('warning-form-container')
+            warningFormContainer.classList.toggle('hide')
+        })
+    }
 
     // invisibleBox.addEventListener('click', function (e) {
     //     // if (!recordingFormContainer.classList.contains('hide') && (e.target.id !== 'record-tab')) recordingFormContainer.classList.toggle('hide')

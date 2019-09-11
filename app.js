@@ -1,6 +1,7 @@
 //// KEY DOWN EVENTS
 // import { createFretboard } from './fretboard.js'
 
+
 document.addEventListener("keydown", function (event) {
   var key = event.key.toUpperCase() || event.keyCode.toUpperCase();
   keyPressed(key);
@@ -35,6 +36,8 @@ function determineRecordingStatus() {
   if (recordButton.innerHTML === 'ARMED') {
     recordButton.innerHTML = 'RECORDING...'
     recordedNotes = [];
+    recordButton.style.boxShadow = '2px 2px 22px 2px crimson'
+
     stopRecordingPlayback()
     beginRecording()
   }
@@ -137,7 +140,7 @@ function beginRecording() {
     }
 
     if (recordedNotes.length > 40 && recordButton.innerHTML === 'REC') {
-
+      recordButton.style.boxShadow = ''
       clearInterval(recording)
       playBackRecording()
     }
@@ -453,7 +456,7 @@ prevSongButton.addEventListener('click', function () {
 // })
 
 
-document.querySelectorAll("button").forEach(function (item) {
+document.querySelectorAll("button").forEach(function (item) { //prevents buttons from being triggered by keypresses
   item.addEventListener('focus', function () {
     this.blur()
   })

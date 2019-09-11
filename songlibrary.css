@@ -1,11 +1,35 @@
 .song-library-container {
-    width: 310px;
+    position: absolute;
+    z-index: 9;
     background: rgb(62, 50, 36);
-    display: flex;
+    width: 310px;
+    display: flex; 
     justify-content: center;
-    margin: auto;
     border-radius: 5px;
+    margin: auto;
+    text-align: center;
+    /* box-shadow: 0px 1px 11px 0.2px #9b9b9b */
 }
+
+#song-library-container{
+   
+    position: absolute;
+    z-index: 9;
+   cursor: pointer;
+}
+
+
+#song-library-container-header{
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+
+
+      padding: 10px;
+  cursor: move;
+  z-index: 10;
+}
+
 
 .song-library{
   width: 80%;
@@ -19,6 +43,7 @@
 
 
 
+
  #song-list {
     margin-bottom: 15px;
     font-size: 18px;
@@ -27,16 +52,22 @@
     border: none;
     display: flex;
     background-color: #291b07;
+    overflow: hidden;
 }
 ​
 
 #song-list option {
-    color: black;
+    color: #9f824b;
+
+}
+
+option{
+    color: #9f824b;
 }
 
 option:checked {
-  color: #222;
-    box-shadow: 0 0 10px 100px #ffffff inset;
+  
+    box-shadow: 0 0 10px 100px #391717 inset;
 }
 
 

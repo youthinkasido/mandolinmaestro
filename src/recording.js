@@ -5,3 +5,4 @@ return 'hi'
 }
 
 export {test}
+export {test}

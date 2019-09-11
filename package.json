@@ -2,7 +2,7 @@
   "name": "mandolin",
   "version": "1.0.0",
   "description": "add a recording as a db item",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
