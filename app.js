@@ -121,11 +121,15 @@ function beginRecording() {
 
       console.log(sounds[keyNote])
       let audio = new Audio(sounds[keyNote].src)
+
       let recordedNote = {
         audio: audio,
         keyNote: keyNote
       }
-      recordedNotes.push(recordedNote)
+
+      potentialLastNote = recordedNote
+
+      recordedNotes.push(potentialLastNote)
       keyNote = 'undefined' /// !!!!!!!!!! may be the problem causing the 'src' error
 
     } else {
@@ -133,6 +137,7 @@ function beginRecording() {
     }
 
     if (recordedNotes.length > 40 && recordButton.innerHTML === 'REC') {
+
       clearInterval(recording)
       playBackRecording()
     }
@@ -142,6 +147,9 @@ function beginRecording() {
 
 let speed = [];
 function playBackRecording() {
+  recordedNotes.slice(recordedNotes.indexOf(potentialLastNote)) // slice out rests after final recorded not for seemless looping experience
+
+  // cut out empty rests after the last note is played for a cleaner looping sequence
   // after recording, set the selected song in library to the one just recorded and set that to the recordedNotes array
   i = 0
   speed.forEach(item => {
@@ -150,7 +158,8 @@ function playBackRecording() {
 
   playing = setInterval(function () {
     if (recordedNotes[i] !== 0) { // if the current note in recording array isnt empty
-      assignNameAndPlayNote(recordedNotes[i].keyNote.slice(4)) // we play it, slicing out unused rests at the end of the recording to make it loop better.
+      assignNameAndPlayNote(recordedNotes[i].keyNote.slice(4)) // we play it, slicing out the letter of the corresponding note 
+
       checkIfStopIsPressed(playing) // while we iterate through our notes, check to make sure stop isnt pressed
       setTimeout(function () { // highlight each note that is played back the recording
         highlightNote(keyNote)
@@ -395,11 +404,6 @@ ambience()
 
 function ambience() {
   volume = document.getElementById('volume-slider')
-
-
-  // ambientAudio = new Audio("https://firebasestorage.googleapis.com/v0/b/mandolin-a1ce1.appspot.com/o/waterfall.mp3?alt=media&token=a32a5fd4-8fae-4aa4-a211-a6e5cbd81e62")
-  // ambientAudio.volume = 0.1;
-  // ambientAudio.play()
 }
 
 
@@ -413,6 +417,34 @@ function assignVolume(note) {
 }
 
 
+function selectNextSong() {
+  let songList = document.getElementById('song-list')
+
+  songList.selectedIndex -= 1
+  songList.focus()
+
+  if (songList.selectedIndex < 0) songList.selectedIndex = 0;
+}
+
+function selectPrevSong() {
+  let songList = document.getElementById('song-list')
+
+  songList.selectedIndex += 1
+  songList.focus()
+
+  if (songList.selectedIndex === -1) songList.selectedIndex = 0;
+}
+
+let nextSongButton = document.getElementById('next-song-button')
+nextSongButton.addEventListener('click', function () {
+  selectNextSong()
+})
+
+
+let prevSongButton = document.getElementById('prev-song-button')
+prevSongButton.addEventListener('click', function () {
+  selectPrevSong()
+})
 
 
 //   recordedNotes = JSON.parse(localStorage.getItem('recording1'))
@@ -421,3 +453,8 @@ function assignVolume(note) {
 // })
 
 
+document.querySelectorAll("button").forEach(function (item) {
+  item.addEventListener('focus', function () {
+    this.blur()
+  })
+})

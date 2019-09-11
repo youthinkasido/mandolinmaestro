@@ -76,7 +76,7 @@ function linkToggle() {
     if (recordTab) { //if the recording tab is loaded and we click it.
         recordTab.addEventListener('click', function () {
             recordingFormContainer.classList.toggle('hide')
-            set
+
         })
     }
 
