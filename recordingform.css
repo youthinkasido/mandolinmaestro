@@ -55,6 +55,7 @@ margin: auto;
   display: flex;
 }
 
+
 .volume{
      width: 100%;
     margin: left;
@@ -75,10 +76,54 @@ margin: auto;
 
 
 .recording-buttons{
-  border: 1px solid white;
+    border: 1px solid white;
+    margin: auto;
+    width: 80%;
+}
+
+#record{
+     display: block;
+    width: 84%;
+    
 }
 
 
+#save{
+    padding: 5px 15px;
+    color: white;
+    font-weight: 800;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    background-color: #25090d;
+    width: 40%;
+    margin: 5px;
+
+}
+
+
+
+
+#stop{
+    padding: 5px 15px;
+    color: white;
+    font-weight: 800;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    background-color: #25090d;
+    width: 40%;
+    margin: 5px;
+}
+
+
+ #save:active{
+  background:#40110f;
+}
+
+#stop:active{
+  background:#40110f;
+}
 
 
 #song-title{
@@ -147,6 +192,9 @@ height: 15%;
  .hide{
   display: none;
 }
+
+
+
 
 
 

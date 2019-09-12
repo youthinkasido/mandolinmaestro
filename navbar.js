@@ -1,5 +1,3 @@
-
-
 createNav()
 linkToggle()
 
@@ -16,15 +14,14 @@ function createNav() {
         <li><a id="songs-tab" href="#">Songs</a></li>
         <li><a id="settings-tab" href="#">Settings</a></li>
         <li><a id="about-tab"href="#">About</a></li>
-
-           <li> <div class="volume">
-                <i class="fas fa-volume-down"></i>
-                <i class="fas fa-volume-mute"></i>
-                <input id="volume-slider" type="range"/>
-                </li>
-            </div>
+           <li> 
+                <div class="volume">
+                    <i class="fas fa-volume-down"></i>
+                    
+                    <input id="volume-slider" type="range"/>
+                </div>
+            </li>
         </ul>
-        <hr/>
     </nav>
 </div>
         <div id="warning-form-container" class="warning-form-container">
@@ -35,9 +32,6 @@ function createNav() {
         <button id="warning-form__button" class="warning-form__button">OK</button>
         </div>
         </div>
-     
-
-
     <div id="recording-form-container" class="recording-form-container hide">
         <div class="recording-form">
 
@@ -46,27 +40,31 @@ function createNav() {
             <input autocomplete="off" placeholder="song title" id="song-title" type="text"/>
             <input placeholder="artist"id="song-artist" type="text"/>
 
-            <div class="recording-buttons">
             <button id="record" >REC</button>
+  
             <button id="stop" >STOP</button>
             <button id="save">SAVE</button>
 
-            </div>
-            <span>Press a key to begin recording</span>
+            <span>Press any key to begin recording</span>
 
-       
         </div>
         </div>
     </div>
     </div>
 
-    <div id="settings-form-container" class="settings-form-container">
-    <div id="settings-form" class="settings-form">
-    <h3 id="settings-form-container-header">Settings</h3>
-
+    <div id="settings-form-container" class="settings-form-container hide">
+        <div id="settings-form" class="settings-form">
+            <h3 id="settings-form-container-header">Settings</h3>
+                <li> 
+                <div class="settings-volume">
+                   <i class="fas fa-volume-down"></i>
+                    <input id="settings-volume-slider" type="range"/>
+                    
+                    </div>
+                    <input type="checkbox" name="performance mode" value="performance mode">Performance Mode</input>
+            </li>
         </div>
     </div>
-
 
     <div id="song-library-container" class="song-library-container hide">
     <div id="song-library" class="song-library">
@@ -84,16 +82,15 @@ function createNav() {
 
     </div>
     </div>
-
    
     `
     }
 }
 
-
 dragElement(document.getElementById("song-library-container"));
 dragElement(document.getElementById("recording-form-container"));
 dragElement(document.getElementById("settings-form-container"));
+
 function dragElement(element) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (document.getElementById(element.id + "-header")) {
@@ -107,11 +104,11 @@ function dragElement(element) {
     function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
-        // get the mouse cursor position at startup:
+
         pos3 = e.clientX;
         pos4 = e.clientY;
         document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
+
         document.onmousemove = elementDrag;
         element.style.zIndex = 40;
     }
@@ -119,19 +116,19 @@ function dragElement(element) {
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
-        // calculate the new cursor position:
+
         pos1 = pos3 - e.clientX;
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
         pos4 = e.clientY;
-        // set the element's new position:
+
         element.style.top = (element.offsetTop - pos2) + "px";
         element.style.left = (element.offsetLeft - pos1) + "px";
 
     }
 
     function closeDragElement() {
-        /* stop moving when mouse button is released:*/
+
         document.onmouseup = null;
         document.onmousemove = null;
 
@@ -142,9 +139,11 @@ function dragElement(element) {
 function linkToggle() {
     let recordingFormContainer = document.getElementById('recording-form-container')
     let songLibraryContainer = document.getElementById('song-library-container')
+    let settingsFormContainer = document.getElementById('settings-form-container')
 
     let recordTab = document.getElementById('record-tab')
     let songsTab = document.getElementById('songs-tab')
+    let settingsTab = document.getElementById('settings-tab')
 
 
     if (recordTab) { //if the recording tab is loaded and we click it.
@@ -160,6 +159,13 @@ function linkToggle() {
             songLibraryContainer.style.zIndex = recordingFormContainer.style.zIndex + 1
         })
 
+    }
+
+    if (settingsTab) {
+        settingsTab.addEventListener('click', function () {
+            settingsFormContainer.classList.toggle('hide')
+            settingsFormContainer.style.zIndex = recordingFormContainer.style.zIndex + 1
+        })
     }
 
     let warningFormButton = document.getElementById('warning-form__button')
@@ -180,9 +186,4 @@ function linkToggle() {
     // }
     // )
 }
-
-
-
-
-
 

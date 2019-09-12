@@ -5,9 +5,7 @@ background-image: url('./background.jpeg');
 }
 .navbar{
 max-width: 1100px;
- 
-    display: flex;
-    justify-content: center;
+     justify-content: center;
     align-items: baseline;
 }
 
@@ -95,4 +93,10 @@ button{ /* button styles for recording and song playback containers */
     background-color: #25090d;
 }
 
-πnav
+li{
+  list-style-type: none;
+}
+
+
+
+

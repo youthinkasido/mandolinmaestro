@@ -5,16 +5,15 @@
     margin: auto;
     border: 1px solid rgb(188, 191, 54);
     display: flex;
+    position: absolute;
   
 }
 
 .warning-form{
     width: 70%;
     height: 70%;
-
     margin: auto;
     background: #ddd;
-    /* background: rgb(62, 50, 36); */
       position: relative;
       border-radius: 12px;
 }

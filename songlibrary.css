@@ -77,6 +77,7 @@ option:checked {
     JUSTIFY-CONTENT: space-between;
 }
 
+
  .hide{
   display: none;
 }
@@ -97,6 +98,8 @@ option:checked {
     font-size: 14px;
     background-color: #25090d;
 }
+
+
 
 #stop-song-button {
     height: 100%;
@@ -127,6 +130,23 @@ option:checked {
     border: none;
     border-radius: 3px;
     background-color: #25090d;
+}
+
+
+ #play-song-button:active{
+  background:#40110f;
+}
+
+ #stop-song-button:active{
+  background:#40110f;
+}
+
+ #next-song-button:active{
+  background:#40110f;
+}
+
+ #prev-song-button:active{
+  background:#40110f;
 }
 ​
 
