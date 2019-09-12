@@ -132,6 +132,19 @@ option:checked {
     background-color: #25090d;
 }
 
+#song-library__close{
+  position: absolute;
+    left: 0;
+    padding: 20px;
+    top: 0;
+    font-size: 20px;
+    margin: auto;
+    color: white;
+    cursor: pointer;
+        z-index: 40;
+}
+
+
 
  #play-song-button:active{
   background:#40110f;

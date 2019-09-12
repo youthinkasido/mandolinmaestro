@@ -16,36 +16,35 @@ function createNav() {
         <li><a id="about-tab"href="#">About</a></li>
            <li> 
                 <div class="volume">
-                    <i class="fas fa-volume-down"></i>
+                    <img src="volume.png" id="volume-icon"></img>
                     
-                    <input id="volume-slider" type="range"/>
                 </div>
             </li>
         </ul>
     </nav>
 </div>
         <div id="warning-form-container" class="warning-form-container">
-        <div class="warning-form">
-        <div class="warning-form__header"></div>
-        <h3 class="warning-form__message">You have to name your song first!</h3>
-        <p class="warning-form__details"> Give your song a cactchy and memorable name.</p>
-        <button id="warning-form__button" class="warning-form__button">OK</button>
+            <div class="warning-form">
+                <div class="warning-form__header"></div>
+                <h3 class="warning-form__message">You have to name your song first!</h3>
+                <p class="warning-form__details"> Give your song a cactchy and memorable name.</p>
+                <button id="warning-form__button" class="warning-form__button">OK</button>
+            </div>
         </div>
-        </div>
-    <div id="recording-form-container" class="recording-form-container hide">
-        <div class="recording-form">
 
-        <div class="controls">
-            <h5 id="recording-form-container-header">New Recording</h5>
-            <input autocomplete="off" placeholder="song title" id="song-title" type="text"/>
-            <input placeholder="artist"id="song-artist" type="text"/>
+        <div id="recording-form-container" class="recording-form-container hide">
+            <h4 id="recording-form__close"><i class="fas fa-window-close"></i></h4>
+            <div class="recording-form">
 
-            <button id="record" >REC</button>
-  
-            <button id="stop" >STOP</button>
-            <button id="save">SAVE</button>
+            <div class="controls">
+                <h5 id="recording-form-container-header">New Recording</h5>
+                <input required autocomplete="off" placeholder="song title" id="song-title" type="text"/>
+                <input placeholder="artist"id="song-artist" type="text"/>
 
-            <span>Press any key to begin recording</span>
+                <button id="record" >REC</button>
+                <button id="stop" >STOP</button>
+                <button id="save">SAVE</button>
+                <span>Press any key to begin recording</span>
 
         </div>
         </div>
@@ -53,13 +52,15 @@ function createNav() {
     </div>
 
     <div id="settings-form-container" class="settings-form-container hide">
+        <h4 id="settings-form__close"><i class="fas fa-window-close"></i></h4>
+
         <div id="settings-form" class="settings-form">
             <h3 id="settings-form-container-header">Settings</h3>
                 <li> 
                 <div class="settings-volume">
                    <i class="fas fa-volume-down"></i>
-                    <input id="settings-volume-slider" type="range"/>
-                    
+                    <input id="settings-volume-slider" type="range" />
+
                     </div>
                     <input type="checkbox" name="performance mode" value="performance mode">Performance Mode</input>
             </li>
@@ -67,8 +68,9 @@ function createNav() {
     </div>
 
     <div id="song-library-container" class="song-library-container hide">
-    <div id="song-library" class="song-library">
-    <h3 id="song-library-container-header">Song Library</h3>
+        <h4 id="song-library__close"><i class="fas fa-window-close"></i></h4>
+        <div id="song-library" class="song-library">
+        <h3 id="song-library-container-header">Song Library</h3>
 
     <select id="song-list" size="10">
     <option>Invent in A minor by Tony Gunk</option>
@@ -179,6 +181,40 @@ function linkToggle() {
         })
     }
 
+    var toggle = false;
+
+    let navVolume = document.getElementById('volume-icon')
+    navVolume.addEventListener('click', function (volumeToggle) {
+
+        if (navVolume) {
+            if (toggle === true) {
+                navVolume.src = 'volume.png'
+            } else {
+                navVolume.src = "volumemute.png"
+                document.querySelectorAll('audio').volume = '0'
+            }
+            toggle = !toggle;
+        }
+    })
+
+
+    let recordingFormClose = document.getElementById('recording-form__close')
+    let songLibraryClose = document.getElementById('song-library__close')
+    let settingsFormClose = document.getElementById('settings-form__close')
+
+    recordingFormClose.addEventListener('click', function () {
+        recordingFormContainer.classList.toggle('hide')
+    })
+
+    songLibraryClose.addEventListener('click', function () {
+        songLibraryContainer.classList.toggle('hide')
+    })
+
+    settingsFormClose.addEventListener('click', function () {
+        settingsFormContainer.classList.toggle('hide')
+    })
+
+
     // invisibleBox.addEventListener('click', function (e) {
     //     // if (!recordingFormContainer.classList.contains('hide') && (e.target.id !== 'record-tab')) recordingFormContainer.classList.toggle('hide')
     //     // if (!songLibraryContainer.classList.contains('hide') && (e.target.id !== 'songs-tab')) songLibraryContainer.classList.toggle('hide')
@@ -187,3 +223,8 @@ function linkToggle() {
     // )
 }
 
+
+
+// volume slider for future update
+{/* <input id="settings-volume-slider" type="range" /> */ }
+{/* <input id="volume-slider" type="range" /> */ }

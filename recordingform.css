@@ -152,6 +152,20 @@ height: 15%;
   padding: 0;
   }
 
+
+#recording-form__close{
+  position: absolute;
+    left: 0;
+    padding: 20px;
+    top: 0;
+    font-size: 20px;
+    margin: auto;
+    color: white;
+    cursor: pointer;
+        z-index: 40;
+}
+
+
   input[type="range"]{
     position: relative;  
     -webkit-appearance: slider-horizontal;
@@ -187,3 +201,5 @@ height: 15%;
  .hide{
   display: none;
 }
+
+

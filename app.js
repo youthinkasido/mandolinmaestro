@@ -24,7 +24,8 @@ function assignNameAndPlayNote(key) {
   }
   keyNote = "note" + key;
   let audio = new Audio(sounds[keyNote].src);
-  determineVolume(audio)
+  determineVolumeLevel(audio)
+
   audio.play();
 }
 function determineRecordingStatus() {
@@ -147,7 +148,7 @@ function beginRecording() {
 
 let speed = [];
 function playBackRecording() {
-  recordedNotes.slice(recordedNotes.indexOf(potentialLastNote)) // slice out rests after final recorded not for seemless looping experience
+  recordedNotes.slice(recordedNotes.indexOf(potentialLastNote) - 1) // slice out rests after final recorded not for seemless looping experience
 
   // cut out empty rests after the last note is played for a cleaner looping sequence
   // after recording, set the selected song in library to the one just recorded and set that to the recordedNotes array
@@ -400,17 +401,15 @@ recordedNotes = [];
 noteTiming = 0;
 i = 0
 
+function determineVolumeLevel(audio) {
 
-
-
-function determineVolume() {
-  volume = document.getElementById('volume-slider')
-  let audioFiles = document.querySelectorAll('audio')
-  volume.addEventListener("mousemove", function (e) {
-    audioFiles.volume = e.currentTarget.value / 100
-  })
+  let volumeIcon = document.getElementById('volume-icon')
+  if (volumeIcon && volumeIcon.src.includes('volume.png')) {
+    audio.volume = '1'
+  } else {
+    audio.volume = '0'
+  }
 }
-
 
 function selectNextSong() {
   let songList = document.getElementById('song-list')

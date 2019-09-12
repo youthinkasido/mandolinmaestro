@@ -42,10 +42,6 @@ transition: 0.2s;
 margin-left: 20px;
 }
 
-.navbar li a:hover{
-
-  text-shadow: 2px 2px 2px rgb(209, 168, 78);
-}
 
 .navbar h1{
   margin-left: 20px;
@@ -98,5 +94,24 @@ li{
 }
 
 
+#volume-icon{
+    width: 30px;
+    margin-top: -4px;
+    cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+  color: white;
 
 
+}
+
+a:hover{
+      color:#a58a62;
+}
+
+
+li a:hover{
+        color:#a58a62;
+}
