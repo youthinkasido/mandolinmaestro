@@ -1,4 +1,4 @@
-import {test } from './recording' 
 
-console.log(test('dude'))
+import { bro } from './app.js'
 
+console.log(bro('Dude'))

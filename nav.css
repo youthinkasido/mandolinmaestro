@@ -58,9 +58,7 @@ margin-left: 20px;
   background-color: rgb(80, 55, 35);
 }
 
-.hide{
-  display: none;
-}
+
 
 span{
       color: white;
@@ -114,4 +112,14 @@ a:hover{
 
 li a:hover{
         color:#a58a62;
+}
+
+
+#recorder-prompt{
+  
+}
+
+
+.hide{
+  display: none;
 }

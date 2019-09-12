@@ -44,7 +44,7 @@ function createNav() {
                 <button id="record" >REC</button>
                 <button id="stop" >STOP</button>
                 <button id="save">SAVE</button>
-                <span>Press any key to begin recording</span>
+                <span id="recorder-prompt" class="hide">Press any key to begin recording</span>
 
         </div>
         </div>

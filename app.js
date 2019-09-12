@@ -6,6 +6,8 @@ document.addEventListener("keydown", function (event) {
 });
 
 function highlightNote(note) { // highlight, then de-highlight pressed note
+
+
   setTimeout(function () {
     document.getElementById(note).classList.toggle("note-pressed")
   }, 100)
@@ -17,17 +19,211 @@ function highlightNote(note) { // highlight, then de-highlight pressed note
   // highlightNonfrettedNotes(note)
 }
 function assignNameAndPlayNote(key) {
+  debugger
+  keyNote = 'note' + key
 
-  if (key === 'SHIFT') {
-    let lownote = new Audio(sounds['noteSHIFT'].src)
-    // lownote.play()
+  // if (key.length > 4) keyNote = key // note coming in from recorder playback
+
+  let audio
+  highlightNote(keyNote)
+
+  switch (keyNote) {
+    case 'noteSHIFT':
+      audio = audioSamples['noteSHIFT'].src
+      audio.currentTime = 0;
+      determineVolumeLevel(audio)
+      audio.play()
+      break;
+
+    case 'note,':
+      audio = audioSamples['noteCOMMA'].src
+      audio.currentTime = 0;
+      determineVolumeLevel(audio)
+      audio.play()
+      break;
+
+    case 'note ':
+      audio = audioSamples['noteSPACE'].src
+      audio.currentTime = 0;
+      determineVolumeLevel(audio)
+      audio.play()
+      break;
+
+    case `noteCONTROL`:
+      audio = audioSamples['noteCONTROL'].src
+      audio.currentTime = 0;
+      determineVolumeLevel(audio)
+      audio.play()
+      break;
   }
-  keyNote = "note" + key;
-  let audio = new Audio(sounds[keyNote].src);
-  determineVolumeLevel(audio)
 
-  audio.play();
+  audio = audioSamples[keyNote].src
+
+  audio.currentTime = 0;
+  determineVolumeLevel(audio)
+  audio.play()
+
 }
+
+
+
+let audioSamples = {
+  noteZ: {
+    src: new Audio('sounds/Znote.mp3')
+  },
+  noteX: {
+    src: new Audio('sounds/Xnote.mp3')
+  },
+
+  noteC: {
+    src: new Audio('sounds/mandolin_C4_very-long_piano_normal.mp3')
+  },
+
+  noteV: {
+    src: new Audio('sounds/mandolin_D4_very-long_piano_normal.mp3')
+  },
+
+  noteB: {
+    src: new Audio('sounds/mandolin_E4_very-long_piano_normal.mp3')
+  },
+
+  noteN: {
+    src: new Audio('sounds/mandolin_F4_very-long_piano_normal.mp3')
+  },
+
+  noteM: {
+    src: new Audio('sounds/mandolin_Gs4real_very-long_piano_normal.mp3')
+  },
+
+
+  noteCOMMA: {
+    src: new Audio('sounds/mandolin_A4_very-long_piano_normal.mp3')
+  },
+
+  noteSPACE: {
+    src: new Audio('sounds/spaceNote.mp3')
+  },
+
+  noteCONTROL: {
+    src: new Audio('sounds/lownote.mp3')
+  },
+
+  noteSHIFT: {
+    src: new Audio('sounds/mandolin_Gs3_very-long_piano_normal.mp3')
+  },
+
+  noteA: {
+    src: new Audio('sounds/mandolin_E4_very-long_piano_normal.mp3')
+  },
+
+  noteS: {
+    src: new Audio('sounds/mandolin_F4_very-long_piano_normal.mp3')
+  },
+
+  noteD: {
+    src: new Audio('sounds/mandolin_Gs4real_very-long_piano_normal.mp3')
+  },
+
+  noteF: {
+    src: new Audio('sounds/mandolin_A4_very-long_piano_normal.mp3')
+  },
+
+  noteG: {
+    src: new Audio('sounds/mandolin_B4_very-long_piano_normal.mp3')
+  },
+
+  noteH: {
+    src: new Audio('sounds/mandolin_C5_very-long_piano_normal.mp3')
+  },
+
+
+  noteJ: {
+    src: new Audio('sounds/mandolin_D5_very-long_piano_normal.mp3')
+  },
+
+  noteK: {
+    src: new Audio('sounds/mandolin_E5_very-long_piano_normal.mp3')
+  },
+
+
+
+  noteQ: {
+    src: new Audio('sounds/mandolin_B4_very-long_piano_normal.mp3')
+  },
+
+  noteW: {
+    src: new Audio('sounds/mandolin_C5_very-long_piano_normal.mp3')
+  },
+
+
+  noteE: {
+    src: new Audio('sounds/mandolin_D5_very-long_piano_normal.mp3')
+  },
+
+
+  noteR: {
+    src: new Audio('sounds/mandolin_E5_very-long_piano_normal.mp3')
+  },
+
+
+  noteT: {
+    src: new Audio('sounds/mandolin_F5_very-long_piano_normal.mp3')
+  },
+
+  noteY: {
+    src: new Audio('sounds/mandolin_Gs4_very-long_piano_normal.mp3')
+  },
+
+  noteU: {
+    src: new Audio('sounds/mandolin_A5_very-long_piano_normal.mp3')
+  },
+
+  noteI: {
+    src: new Audio('sounds/mandolin_B5_very-long_piano_normal.mp3')
+  },
+
+
+
+  noteP: {
+    src: new Audio('sounds/mandolin_D6_very-long_piano_normal.mp3')
+  },
+
+
+  note1: {
+    src: new Audio('sounds/mandolin_F5_very-long_piano_normal.mp3')
+  },
+
+  note2: {
+    src: new Audio('sounds/mandolin_Gs4_very-long_piano_normal.mp3')
+  },
+
+
+  note3: {
+    src: new Audio('sounds/mandolin_A5_very-long_piano_normal.mp3')
+  },
+
+  note4: {
+    src: new Audio('sounds/mandolin_B5_very-long_piano_normal.mp3')
+  },
+
+  note5: {
+    src: new Audio('sounds/mandolin_F5_very-long_piano_normal.mp3')
+  },
+
+  note6: {
+    src: new Audio('sounds/mandolin_Gs4_very-long_piano_normal.mp3')
+  },
+
+
+  note7: {
+    src: new Audio('sounds/mandolin_A5_very-long_piano_normal.mp3')
+  },
+
+  note8: {
+    src: new Audio('sounds/mandolin_B5_very-long_piano_normal.mp3')
+  },
+}
+
 function determineRecordingStatus() {
 
   let recordButton = document.getElementById('record')
@@ -90,7 +286,7 @@ function vibrateString(key) { //vibrate string based on location of note
 function keyPressed(key) {
 
   assignNameAndPlayNote(key)
-  highlightNote(keyNote)
+  highlightNote(key)
   determineRecordingStatus()
   // saveRecording()
 
@@ -148,7 +344,7 @@ function beginRecording() {
 
 let speed = [];
 function playBackRecording() {
-  recordedNotes.slice(recordedNotes.indexOf(potentialLastNote) - 1) // slice out rests after final recorded not for seemless looping experience
+  recordedNotes.slice(recordedNotes.indexOf(potentialLastNote)) // slice out rests after final recorded not for seemless looping experience
 
   // cut out empty rests after the last note is played for a cleaner looping sequence
   // after recording, set the selected song in library to the one just recorded and set that to the recordedNotes array
@@ -159,12 +355,11 @@ function playBackRecording() {
 
   playing = setInterval(function () {
     if (recordedNotes[i] !== 0) { // if the current note in recording array isnt empty
+      debugger
       assignNameAndPlayNote(recordedNotes[i].keyNote.slice(4)) // we play it, slicing out the letter of the corresponding note 
 
       checkIfStopIsPressed(playing) // while we iterate through our notes, check to make sure stop isnt pressed
-      setTimeout(function () { // highlight each note that is played back the recording
-        highlightNote(keyNote)
-      }, 100)
+
     }
     i++ // go to the next note
     if (i >= recordedNotes.length) i = 0; // if we have reached the end of the recording, reset it.
@@ -201,12 +396,14 @@ songList.addEventListener('click', function () {
 })
 
 function handleRecordButton() {
+  recorderPrompt = document.getElementById('recorder-prompt')
   recordButton = document.getElementById("record")
   recordButton.addEventListener('click', function () {
 
 
     if (recordButton.innerHTML === 'REC') {
       recordButton.innerHTML = 'ARMED'
+      recorderPrompt.classList.toggle('hide')
     } else {
       recordButton.innerHTML = 'RECORDING...'
     }
@@ -263,12 +460,18 @@ if (saveButton) {
 // let audio = new Audio(sounds[Math.floor(Math.random() * 10 + 1)].src);
 
 //// STARTUP ////
+
+
 (async () => {
   sounds = await getSounds();
   console.log(sounds)
   renderMandolin();
   populateRecordings()
+
+
 })();
+
+
 handleRecordButton()
 async function getSounds() {
   const response = await fetch("./soundwaves.json");
@@ -310,6 +513,7 @@ function createFretboard() {
     let string = addStringsToFretboard(row);
     let fret = addFretToRow(row);
   }
+
 }
 function addStringsToFretboard(row) {
   let string = document.createElement("div");
@@ -447,4 +651,16 @@ document.querySelectorAll("button").forEach(function (item) { //prevents buttons
     this.blur()
   })
 })
+
+
+
+
+noteIndex = ["note1", "note2", "note3", "note4", "note5", "note6", "note7", "note8",
+  "noteQ", "noteW", "noteE", "noteR", "noteT", "noteY", "noteU", "noteI",
+  "noteA", "noteS", "noteD", "noteF", "noteG", "noteH", "noteJ", "noteK",
+  "noteZ", "noteX", "noteC", "noteV", "noteB", "noteN", "noteM", "note,"]
+
+
+
+
 
