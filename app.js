@@ -1,7 +1,5 @@
 //// KEY DOWN EVENTS
 // import { createFretboard } from './fretboard.js'
-
-
 document.addEventListener("keydown", function (event) {
   var key = event.key.toUpperCase() || event.keyCode.toUpperCase();
   keyPressed(key);
@@ -26,8 +24,7 @@ function assignNameAndPlayNote(key) {
   }
   keyNote = "note" + key;
   let audio = new Audio(sounds[keyNote].src);
-
-  assignVolume(audio)
+  determineVolume(audio)
   audio.play();
 }
 function determineRecordingStatus() {
@@ -403,19 +400,14 @@ recordedNotes = [];
 noteTiming = 0;
 i = 0
 
-ambience()
 
-function ambience() {
+
+
+function determineVolume() {
   volume = document.getElementById('volume-slider')
-}
-
-
-function assignVolume(note) {
-
-  let volume = document.getElementById('volume-slider')
+  let audioFiles = document.querySelectorAll('audio')
   volume.addEventListener("mousemove", function (e) {
-
-    note.volume = e.currentTarget.value / 100
+    audioFiles.volume = e.currentTarget.value / 100
   })
 }
 
@@ -450,14 +442,10 @@ prevSongButton.addEventListener('click', function () {
 })
 
 
-//   recordedNotes = JSON.parse(localStorage.getItem('recording1'))
-//   console.log(recordedNotes)
-//   playBackRecording(recordedNotes)
-// })
-
-
+// prevent spacebar from acting as a click
 document.querySelectorAll("button").forEach(function (item) { //prevents buttons from being triggered by keypresses
   item.addEventListener('focus', function () {
     this.blur()
   })
 })
+

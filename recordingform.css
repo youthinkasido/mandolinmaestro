@@ -116,7 +116,6 @@ margin: auto;
     margin: 5px;
 }
 
-
  #save:active{
   background:#40110f;
 }
@@ -125,20 +124,16 @@ margin: auto;
   background:#40110f;
 }
 
-
 #song-title{
     height: 15%;
     width: 80%;
     text-align: center;
-    
-
 }
 
 #song-artist{
 height: 15%;
     width: 80%;
     text-align: center;
- 
   }
 
   #song-title-header{
@@ -192,9 +187,3 @@ height: 15%;
  .hide{
   display: none;
 }
-
-
-
-
-
-

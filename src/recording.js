@@ -1,8 +1,7 @@
 
 
 const test = () => {
-return 'hi'
+    return 'hi'
 }
 
-export {test}
-export {test}
+export { test }
