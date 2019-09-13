@@ -9,6 +9,7 @@ function highlightNote(note) { // highlight, then de-highlight pressed note
 
 
   setTimeout(function () {
+    debugger
     document.getElementById(note).classList.toggle("note-pressed")
   }, 100)
 
@@ -286,7 +287,7 @@ function vibrateString(key) { //vibrate string based on location of note
 function keyPressed(key) {
 
   assignNameAndPlayNote(key)
-  highlightNote(key)
+
   determineRecordingStatus()
   // saveRecording()
 
