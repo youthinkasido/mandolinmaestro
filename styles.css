@@ -30,7 +30,6 @@ button{
 
 body {
   background: black;
-  background-image: url('./background.jpeg');
   background-size: cover;
   height: 600px;
 }
@@ -38,7 +37,6 @@ body {
 .fretboard {
   background-image: url("https://firebasestorage.googleapis.com/v0/b/mandolin-a1ce1.appspot.com/o/mandolinwood.png?alt=media&token=0f2e1fbf-e7e6-4ed4-bedf-70c8f83e7ca5");
      width: 150%;
-
     height: 260px;
     flex-direction: column;
     border: 4px solid rgb(48, 48, 35);
@@ -124,7 +122,7 @@ box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
 }
 
 .note-pressed {
-border-radius: 900px;
+  border-radius: 900px;
     background-color: white;
     box-shadow: 3px 2px;
     z-index: 9;

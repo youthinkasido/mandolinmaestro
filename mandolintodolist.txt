@@ -1,0 +1,51 @@
+Replace any none local files
+
+Volume fix / 
+
+Recording walkthrough text 
+
+Form closings 
+
+Playback speed, 
+
+Recording speed
+
+Warnings on not filling out song recording details 
+
+
+Web pack displayed on saving a file
+
+Long term goals:
+
+Optimizing recording and playback with getting the time between each note 
+
+Fix rests after recording
+
+Implement delete on individual recordings
+
+Console warnings
+
+Readme with screenshots
+
+Upload with docker 
+
+Configure web pack
+
+Up and down arrows for song playback
+
+Convert to firebase db
+
+Form exit buttons
+
+Convert file saves to firebase database
+
+Adjust string positioning 
+
+is there a command that lets you comment out code that optimizes your app
+
+Fix z index on forms overlapping fretboard
+
+Account for stopping a recording vs tapping record again, add successful save message
+
+
+Disable mouseover triggering note highlight

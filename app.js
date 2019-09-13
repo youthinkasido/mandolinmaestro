@@ -7,9 +7,7 @@ document.addEventListener("keydown", function (event) {
 
 function highlightNote(note) { // highlight, then de-highlight pressed note
 
-
   setTimeout(function () {
-    debugger
     document.getElementById(note).classList.toggle("note-pressed")
   }, 100)
 
@@ -20,7 +18,7 @@ function highlightNote(note) { // highlight, then de-highlight pressed note
   // highlightNonfrettedNotes(note)
 }
 function assignNameAndPlayNote(key) {
-  debugger
+
   keyNote = 'note' + key
 
   // if (key.length > 4) keyNote = key // note coming in from recorder playback
@@ -29,6 +27,7 @@ function assignNameAndPlayNote(key) {
   highlightNote(keyNote)
 
   switch (keyNote) {
+
     case 'noteSHIFT':
       audio = audioSamples['noteSHIFT'].src
       audio.currentTime = 0;
@@ -43,7 +42,7 @@ function assignNameAndPlayNote(key) {
       audio.play()
       break;
 
-    case 'note ':
+    case `note `:
       audio = audioSamples['noteSPACE'].src
       audio.currentTime = 0;
       determineVolumeLevel(audio)
@@ -65,8 +64,6 @@ function assignNameAndPlayNote(key) {
   audio.play()
 
 }
-
-
 
 let audioSamples = {
   noteZ: {
@@ -239,7 +236,6 @@ function determineRecordingStatus() {
 
   // if record button pressed, clear out any currently playing intervals and recordedNotes
 
-
 }
 function vibrateString(key) { //vibrate string based on location of note
   let string
@@ -317,7 +313,6 @@ function beginRecording() {
 
     if (keyNote !== 'undefined') {
 
-      console.log(sounds[keyNote])
       let audio = new Audio(sounds[keyNote].src)
 
       let recordedNote = {
@@ -342,7 +337,6 @@ function beginRecording() {
   }, 1)
 }
 
-
 let speed = [];
 function playBackRecording() {
   recordedNotes.slice(recordedNotes.indexOf(potentialLastNote)) // slice out rests after final recorded not for seemless looping experience
@@ -356,7 +350,7 @@ function playBackRecording() {
 
   playing = setInterval(function () {
     if (recordedNotes[i] !== 0) { // if the current note in recording array isnt empty
-      debugger
+
       assignNameAndPlayNote(recordedNotes[i].keyNote.slice(4)) // we play it, slicing out the letter of the corresponding note 
 
       checkIfStopIsPressed(playing) // while we iterate through our notes, check to make sure stop isnt pressed
@@ -418,6 +412,13 @@ function checkIfStopIsPressed() { // checks wether stop or playing is toggled wh
 
   let stopSongButton = document.getElementById('stop-song-button')
   let songPlayButton = document.getElementById('play-song-button')
+  let stopRecordingButton = document.getElementById('stop')
+
+  stopRecordingButton.addEventListener('click', function () {
+
+
+    stopRecordingPlayback() // clear the playback interval passed in from playBackRecording
+  })
 
   stopSongButton.addEventListener('click', function () {
     stopRecordingPlayback() // clear the playback interval passed in from playBackRecording
@@ -443,9 +444,12 @@ function handleSaveButton() { // refactor the interface to include global record
   }
   const { saveButton, title, artist } = recordingInterface
 
-  const storedRecording = localStorage.setItem(`${title.value} by ${artist.value}`, JSON.stringify(recordedNotes))
+  if (!localStorage.hasOwnProperty(`${title.value} by ${artist.value}`)) { // only save a song that isnt already in storage
 
-  loadSongList()
+    const storedRecording = localStorage.setItem(`${title.value} by ${artist.value}`, JSON.stringify(recordedNotes))
+    localStorage.removeItem(['loglevel:webpack-dev-server'])
+    loadSongList()
+  }
   // localStorage.setItem(`${localStorage.length} . ${title.value} by ${artist.value}`, JSON.stringify(recordedNotes))
 }
 ///// save feature //
@@ -457,11 +461,6 @@ if (saveButton) {
     }
   })
 }
-// note avant guard randomizer mode, hold one button to auto play notes
-// let audio = new Audio(sounds[Math.floor(Math.random() * 10 + 1)].src);
-
-//// STARTUP ////
-
 
 (async () => {
   sounds = await getSounds();
@@ -483,6 +482,8 @@ function renderMandolin() {
   createFretboard();
   loadSongList()
 }
+
+
 /////////////////////////////
 function loadSongList() { // sort songs
 
@@ -496,6 +497,9 @@ function loadSongList() { // sort songs
   if (songList.length > 0) { // repopulate song list each time a new song is saved after recording
     songList.remove(1)
   }
+
+
+  debugger
 
   for (let s = 0; s < songs.length; s++) {
 
@@ -654,8 +658,6 @@ document.querySelectorAll("button").forEach(function (item) { //prevents buttons
 })
 
 
-
-
 noteIndex = ["note1", "note2", "note3", "note4", "note5", "note6", "note7", "note8",
   "noteQ", "noteW", "noteE", "noteR", "noteT", "noteY", "noteU", "noteI",
   "noteA", "noteS", "noteD", "noteF", "noteG", "noteH", "noteJ", "noteK",
@@ -665,3 +667,7 @@ noteIndex = ["note1", "note2", "note3", "note4", "note5", "note6", "note7", "not
 
 
 
+
+
+
+localStorage.removeItem(['loglevel:webpack-dev-server'])

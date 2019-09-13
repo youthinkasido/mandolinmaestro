@@ -16,6 +16,11 @@
     position: absolute;
     z-index: 9;
    cursor: pointer;
+
+       z-index: 100;
+    top: 143px;
+    left: 87px;
+    border: 1px solid navajowhite;
 }
 
 

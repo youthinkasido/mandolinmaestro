@@ -23,7 +23,7 @@ function createNav() {
         </ul>
     </nav>
 </div>
-        <div id="warning-form-container" class="warning-form-container">
+        <div id="warning-form-container" class="warning-form-container hide">
             <div class="warning-form">
                 <div class="warning-form__header"></div>
                 <h3 class="warning-form__message">You have to name your song first!</h3>
@@ -55,11 +55,19 @@ function createNav() {
         <h4 id="settings-form__close"><i class="fas fa-window-close"></i></h4>
 
         <div id="settings-form" class="settings-form">
-            <h3 id="settings-form-container-header">Settings</h3>
+            <h3 id="settings-form-container-header">Backgrounds</h3>
                 <li> 
                 <div class="settings-volume">
-                   <i class="fas fa-volume-down"></i>
-                    <input id="settings-volume-slider" type="range" />
+
+                    <select id="background-selector" size='4'>
+                        <option >Ancient Wisdom</option>
+                         <option>Calming Cove</option>
+                         <option>Forest Floor</option>
+                         <option>Hidden Waterfall</option>
+                         <option>Frozen Stream</option>
+
+
+                    </select>
 
                     </div>
                     <input type="checkbox" name="performance mode" value="performance mode">Performance Mode</input>
@@ -73,7 +81,6 @@ function createNav() {
         <h3 id="song-library-container-header">Song Library</h3>
 
     <select id="song-list" size="10">
-    <option>Invent in A minor by Tony Gunk</option>
     </select>
 
         <div class="song-play-bar">
@@ -88,6 +95,7 @@ function createNav() {
     `
     }
 }
+
 
 dragElement(document.getElementById("song-library-container"));
 dragElement(document.getElementById("recording-form-container"));
@@ -159,6 +167,7 @@ function linkToggle() {
         songsTab.addEventListener('click', function () {
             songLibraryContainer.classList.toggle('hide')
             songLibraryContainer.style.zIndex = recordingFormContainer.style.zIndex + 1
+
         })
 
     }
@@ -166,7 +175,7 @@ function linkToggle() {
     if (settingsTab) {
         settingsTab.addEventListener('click', function () {
             settingsFormContainer.classList.toggle('hide')
-            settingsFormContainer.style.zIndex = recordingFormContainer.style.zIndex + 1
+            settingsFormContainer.style.zIndex = songLibraryContainer.style.zIndex + 1
         })
     }
 
@@ -182,7 +191,6 @@ function linkToggle() {
     }
 
     var toggle = false;
-
     let navVolume = document.getElementById('volume-icon')
     navVolume.addEventListener('click', function (volumeToggle) {
 
@@ -214,17 +222,32 @@ function linkToggle() {
         settingsFormContainer.classList.toggle('hide')
     })
 
-
-    // invisibleBox.addEventListener('click', function (e) {
-    //     // if (!recordingFormContainer.classList.contains('hide') && (e.target.id !== 'record-tab')) recordingFormContainer.classList.toggle('hide')
-    //     // if (!songLibraryContainer.classList.contains('hide') && (e.target.id !== 'songs-tab')) songLibraryContainer.classList.toggle('hide')
-
-    // }
-    // )
 }
+
+
+
 
 
 
 // volume slider for future update
 {/* <input id="settings-volume-slider" type="range" /> */ }
 {/* <input id="volume-slider" type="range" /> */ }
+
+
+let backgroundMenu = document.getElementById('background-selector')
+
+backgroundMenu.addEventListener('click', () => {
+    let body = document.getElementsByTagName('body')[0]
+
+    body.style.background = `url('${backgrounds[backgroundMenu.value]}')`
+    body.style.backgroundSize = '2000px'
+
+})
+
+let backgrounds = {
+    "Ancient Wisdom": "background.jpeg",
+    "Calming Cove": "calmingcove.gif",
+    "Forest Floor": "forestfloor.gif",
+    "Hidden Waterfall": "hiddenwaterfall.gif",
+    "Frozen Stream": "frozenstream.gif",
+}

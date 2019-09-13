@@ -1,8 +1,29 @@
 body {
   font-family: sans-serif;
   box-sizing: border-box;
-background-image: url('./background.jpeg');
+  background-image: url('./background.jpeg');
+  object-fit: cover;
+  background-repeat: no-repeat;
+  animation-name: fadein;
+  animation-duration: 1s;
+  transition: background-image 1s ease-in-out;
 }
+
+@keyframes fadein{
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+
+    /* font-family: sans-serif;
+    box-sizing: border-box;
+    /* background-image: url(./background.jpeg); */
+    /* background-image: url(./waterfall.gif);
+    object-fit: fill;
+    background-repeat: space;
+    background-size: 2000px */
+
+
 .navbar{
 max-width: 1100px;
      justify-content: center;
@@ -123,3 +144,28 @@ li a:hover{
 .hide{
   display: none;
 }
+
+
+#background-selector{
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    display: flex;
+    background-color: #291b07;
+    overflow: hidden;
+    width: 260px;
+    height: 140px;
+}
+
+
+.fa, .fas {
+    font-weight: 900;
+    color: darkgrey;
+    margin: -149px -49px -70px -;
+    top: 0;
+    position: absolute;
+    left: 0;
+    margin: 5px;
+    font-size: xx-large;
