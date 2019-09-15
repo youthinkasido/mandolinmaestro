@@ -499,16 +499,13 @@ function loadSongList() { // sort songs
   }
 
 
-  debugger
+
 
   for (let s = 0; s < songs.length; s++) {
 
     let song = songs[s]
-
     let listItem = document.createElement('option')
-
     listItem.innerHTML = song
-
     songList.appendChild(listItem)
   }
 }
