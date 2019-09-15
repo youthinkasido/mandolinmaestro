@@ -27,7 +27,7 @@
   "scripts": {
     "build": "webpack",
     "start:dev": "webpack-dev-server",
-    "start": "npm start:dev"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
