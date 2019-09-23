@@ -9,7 +9,7 @@ https://mandolinmaestro.herokuapp.com/
 - Virtual fretboard using CSS Flexbox and CSS keyframe animations to produce realistic animations.
 
 ## Code Snippet
-The following code snippet uses case statements over 'if' conditionals to determine what strings shall vibrate on the mandolin when struck with the appropriate keys. Through the use of case statements, I'm able to thin down the ammount of code needed to create this sequence when compared to an if conditional.
+The following code snippet uses case statements over 'if' conditionals to determine what strings shall vibrate on the mandolin when struck with the appropriate keys. Through the use of case statements, I'm able to greatly reduce the amount of code needed to create this sequence as compared to an 'if' conditional.
 
     function vibrateString(key) { //vibrate string based on location of note
       let string
