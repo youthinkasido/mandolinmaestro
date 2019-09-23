@@ -5,12 +5,6 @@ https://mandolinmaestro.herokuapp.com/
 ![alt text](https://i.ibb.co/NrRBf1d/mandolin.png)
 
 Features:
-- recording and playback functionality
+- Recording and playback functionality with Local Storage that supports multi audio sample recording.
+- Virtual fretboard using CSS Flexbox and CSS keyframe animations to produce realistic animations.
 
-Technical challenges:
-
-Since I wont be using a database, I will use localStorage to store recordings and premade songs.
-
-Css for fretboard and string vibration and highlighting upon play will be a challenge
-
-Mastering efficiency of code in order to provide seamless recording and playback experience
