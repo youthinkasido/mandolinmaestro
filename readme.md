@@ -1,6 +1,8 @@
-Mandolin Maestro is a 16 note virtual instrument with recording and playback functionality designed entirely with vanilla javascript.
+Mandolin Maestro is a 16 note virtual instrument with recording and playback functionality created with Javascript, HTML, and CSS.
 
 https://mandolinmaestro.herokuapp.com/
+
+![alt text](https://i.ibb.co/NrRBf1d/mandolin.png)
 
 Features:
 - recording and playback functionality
