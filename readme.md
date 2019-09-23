@@ -2,7 +2,7 @@ Mandolin Maestro is a 16 note virtual instrument with recording and playback fun
 
 https://mandolinmaestro.herokuapp.com/
 
-![alt text](https://i.ibb.co/5MncKwX/Screen-Shot-2019-09-23-at-3-55-49-PM.png)
+![alt text](https://github.com/youthinkasido/mandolinmaestro/blob/master/mandolin.png?raw=true)
 
 ## Features:
 - Recording and playback functionality with Local Storage that supports multi audio sample recording.
