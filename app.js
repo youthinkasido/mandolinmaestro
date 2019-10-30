@@ -240,7 +240,7 @@ function determineRecordingStatus() {
 function vibrateString(key) { //vibrate string based on location of note
   let string
   switch (key) {
-    case "SHIFT": case "Z": case "X": case "C": case "V":
+    case "SHIFT": case "Z": case "X": case "C": case "V": case "B": case "N": case "M": case ",":
 
       string = document.querySelector(".string4")
       string.classList.toggle('plucked4')
@@ -249,8 +249,7 @@ function vibrateString(key) { //vibrate string based on location of note
       }, 100);
       break
 
-    case "B": case "N": case "M": case ",": case "B": case "N": case "M":
-    case ",": case "A": case "S": case "D": case "F":
+    case "A": case "S": case "D": case "F": case "G": case "H": case "J": case "K":
 
       string = document.querySelector(".string3");
       string.classList.toggle("plucked3");
@@ -260,7 +259,7 @@ function vibrateString(key) { //vibrate string based on location of note
       }, 100);
       break;
 
-    case "Q": case "W": case "E": case "R":
+    case "Q": case "W": case "E": case "R": case "T": case "Y": case "U": case "I":
       string = document.querySelector(".string2");
       string.classList.toggle("plucked2");
 
@@ -292,8 +291,7 @@ function keyPressed(key) {
       vibrateString(key)
       break;
 
-    case "B": case "N": case "M": case ",": case "B": case "N": case "M":
-    case ",": case "A": case "S": case "D": case "F":
+    case "B": case "N": case "M": case ",": case "A": case "S": case "D": case "F":
       vibrateString(key)
       break;
 
