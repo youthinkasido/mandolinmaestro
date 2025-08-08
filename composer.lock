@@ -1,1 +1,19 @@
 
+{
+    "_readme": [
+        "This is a placeholder composer.lock file.",
+        "It was manually created for build compatibility on Netlify.",
+        "Run `composer install` locally or in CI to generate a real lock file."
+    ],
+    "content-hash": "00000000000000000000000000000000",
+    "packages": [],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
+}
