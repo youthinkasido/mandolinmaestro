@@ -1,0 +1,33 @@
+name: Generate composer.lock
+
+on:
+  workflow_dispatch: # Lets you trigger it manually from the Actions tab
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+
+      - name: Install dependencies & generate composer.lock
+        run: composer install --no-interaction --no-progress
+
+      - name: Commit composer.lock
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add composer.lock
+          git commit -m "Generate composer.lock"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
